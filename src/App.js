@@ -1,24 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import React, { useState } from "react";
+import CountdownTimer from "./Components/CountdownTimer/CountdownTimer";
+import styled from "styled-components";
+import Calendar from "moedim";
+
+const AppContainer = styled.div`
+  margin: 0;
+  padding: 0;
+  background-color: gray;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const StyledCalendar = styled(Calendar)`
+  --moedim-primary: green;
+`;
 
 function App() {
+  const [value, setValue] = useState(new Date());
+  const setData = new Date(value).getTime();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContainer>
+      <h1>OC Peugeot</h1>
+      <CountdownTimer countdownTimestampMs={setData} />
+      <StyledCalendar
+        value={value}
+        onChange={(d) => setValue(d)}
+        locale={"pl-PL"}
+      />
+    </AppContainer>
   );
 }
 
