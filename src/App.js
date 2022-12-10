@@ -2,7 +2,7 @@ import "./App.css";
 import React, { useState } from "react";
 import CountdownTimer from "./Components/CountdownTimer/CountdownTimer";
 import styled from "styled-components";
-import Calendar from "moedim";
+import Calendar from "./Components/Calendar/Calendar";
 
 const AppContainer = styled.div`
   margin: 0;
@@ -26,12 +26,7 @@ function App() {
   return (
     <AppContainer>
       <h1>OC Peugeot</h1>
-      <CountdownTimer countdownTimestampMs={setData} />
-      <StyledCalendar
-        value={value}
-        onChange={(d) => setValue(d)}
-        locale={"pl-PL"}
-      />
+      <Calendar funcGetDate={getDateFromCalendar}></Calendar>
     </AppContainer>
   );
 }
