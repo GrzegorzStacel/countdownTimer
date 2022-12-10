@@ -6,19 +6,19 @@ const StyledCalendar = styled(Timetable)`
   --moedim-primary: green;
 `;
 
-const Calendar = ({ addValue }) => {
-  const [value, setValue] = useState(new Date());
-  const setData = new Date(value).getTime();
+const Calendar = ({ funcGetDate }) => {
+  const [deadLineDate, setDeadLineDate] = useState(new Date());
+  const setDataInMs = new Date(deadLineDate).getTime();
 
   useEffect(() => {
-    addValue(value, setData);
-  }, [value, setData, addValue]);
+    funcGetDate(deadLineDate, setDataInMs);
+  }, [deadLineDate, setDataInMs, funcGetDate]);
 
   return (
     <StyledCalendar
-      value={value}
+      value={deadLineDate}
       onChange={(d) => {
-        setValue(d);
+        setDeadLineDate(d);
       }}
       locale={"pl-PL"}
     />
