@@ -34,13 +34,9 @@ const DateNote = ({ heading }) => {
     );
   };
   return (
-    <AppContainer>
+    <>
       <ButtonIcon icon={plusIcon} />
-      <Heading>{heading}</Heading>
-      <DateLabel>{getTimeFromCalendar.toLocaleDateString()}</DateLabel>
-      <Calendar funcGetDate={getDateFromCalendar}></Calendar>
-      <CountdownTimer countdownTimestampMs={sendSpecificallyDataFromCalendar} />
-    </AppContainer>
+    </>
   );
 };
 
