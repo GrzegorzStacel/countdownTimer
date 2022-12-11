@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { getRemainingTimeUntilMsTimestamp } from "../../Utils/CountdownTimerUtils";
+import { getRemainingTimeUntilMsTimestamp } from "../../../Utils/CountdownTimerUtils";
 
 const Container = styled.div`
   height: 100px;
