@@ -1,9 +1,9 @@
 import React from "react";
 import "./App.css";
-import DateNote from "./Components/molecules/DateNote/DateNote";
+import MainList from "./Components/organisms/MainList";
 
 function App() {
-  return <DateNote heading={"OC/NW Peugeot"} />;
+  return <MainList />;
 }
 
 export default App;
