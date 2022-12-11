@@ -9,11 +9,12 @@ import DateLabel from "../../atoms/DateLabel/DateLabel";
 import PropTypes from "prop-types";
 
 const AppContainer = styled.div`
-  margin: 0;
+  border-top: 2px solid black;
+  margin: 0 auto;
   padding: 0;
   background-color: gray;
-  width: 100vw;
-  height: 100vh;
+  width: 50vw;
+  /* height: 100vh; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,6 +37,14 @@ const DateNote = ({ heading }) => {
   return (
     <>
       <ButtonIcon icon={plusIcon} />
+      <AppContainer>
+        <Heading>{heading}</Heading>
+        <DateLabel>{getTimeFromCalendar.toLocaleDateString()}</DateLabel>
+        <Calendar funcGetDate={getDateFromCalendar}></Calendar>
+        <CountdownTimer
+          countdownTimestampMs={sendSpecificallyDataFromCalendar}
+        />
+      </AppContainer>
     </>
   );
 };

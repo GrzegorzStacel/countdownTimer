@@ -9,7 +9,10 @@ const ButtonIcon = styled.button`
   background-repeat: no-repeat;
   background-position: 50% 50%;
   background-size: 50% 50%;
+  background-color: green;
+  color: yellow;
   border: none;
+  margin: 30px auto;
 
   &:hover {
     background-color: white;

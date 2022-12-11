@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 const StyledCalendar = styled(Timetable)`
   --moedim-primary: green;
+  /* display: none; */
 `;
 
 const Calendar = ({ funcGetDate }) => {
