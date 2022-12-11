@@ -6,6 +6,7 @@ import Calendar from "../../atoms/Calendar/Calendar";
 import ButtonIcon from "../../atoms/ButtonIcon/ButtonIcon";
 import Heading from "../../atoms/Heading/Heading";
 import DateLabel from "../../atoms/DateLabel/DateLabel";
+import PropTypes from "prop-types";
 
 const AppContainer = styled.div`
   margin: 0;
@@ -41,6 +42,10 @@ const DateNote = ({ heading }) => {
       <CountdownTimer countdownTimestampMs={sendSpecificallyDataFromCalendar} />
     </AppContainer>
   );
+};
+
+DateNote.prototypes = {
+  heading: PropTypes.string.isRequired,
 };
 
 export default DateNote;
