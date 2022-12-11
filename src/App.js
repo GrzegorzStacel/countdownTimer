@@ -1,8 +1,8 @@
 import "./App.css";
 import React, { useState } from "react";
-import CountdownTimer from "./Components/CountdownTimer/CountdownTimer";
+import CountdownTimer from "./Components/atoms/CountdownTimer/CountdownTimer";
 import styled from "styled-components";
-import Calendar from "./Components/Calendar/Calendar";
+import Calendar from "./Components/atoms/Calendar/Calendar";
 
 const AppContainer = styled.div`
   margin: 0;
