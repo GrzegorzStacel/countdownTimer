@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Timetable from "moedim";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const StyledCalendar = styled(Timetable)`
   --moedim-primary: green;
-  /* display: none; */
 `;
 
 const Calendar = ({ funcGetDate }) => {
@@ -12,7 +12,7 @@ const Calendar = ({ funcGetDate }) => {
   const setDataInMs = new Date(deadLineDate).getTime();
 
   useEffect(() => {
-    funcGetDate(deadLineDate, setDataInMs);
+    funcGetDate(setDataInMs);
   }, [deadLineDate, setDataInMs, funcGetDate]);
 
   return (
@@ -24,6 +24,10 @@ const Calendar = ({ funcGetDate }) => {
       locale={"pl-PL"}
     />
   );
+};
+
+Calendar.propTypes = {
+  funcGetDate: PropTypes.func.isRequired,
 };
 
 export default Calendar;
