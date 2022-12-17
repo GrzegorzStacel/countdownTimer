@@ -10,6 +10,11 @@ function App() {
     { title: "Moje urodziny", data: new Date("September 25, 2023"), id: 2 },
     { title: "Przegląd Vectra", data: new Date("January 13, 2023"), id: 3 },
   ];
+  const sortedInitialValues = [].concat(initialValues);
+  sortedInitialValues
+    .sort((a, b) => (a.data.getTime() > b.data.getTime() ? 1 : -1))
+    .map((item, i) => <div key={i}> {item.data}</div>);
+
 }
 
 export default App;
