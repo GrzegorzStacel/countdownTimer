@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import "./App.css";
 import MainList from "./Components/organisms/MainList";
+import ButtonIcon from "./Components/atoms/ButtonIcon/ButtonIcon";
+import AddNewInstance from "./Components/molecules/AddNewInstance/AddNewInstance";
+import plusIcon from "./assets/icons/Plusicon.svg";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,6 +26,13 @@ function App() {
   function closeModal() {
     setIsModalOpen(() => false);
   }
+
+  return (
+    <>
+      <ButtonIcon icon={plusIcon} onClick={openModal} />
+      {isModalOpen ? <AddNewInstance closeModalFn={closeModal} /> : null}
+    </>
+  );
 }
 
 export default App;
