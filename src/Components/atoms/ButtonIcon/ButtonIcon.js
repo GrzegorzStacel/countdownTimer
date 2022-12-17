@@ -12,7 +12,7 @@ const ButtonIcon = styled.button`
   background-color: green;
   color: yellow;
   border: none;
-  margin: 30px auto;
+  margin: 0 auto 30px auto;
 
   &:hover {
     background-color: white;
