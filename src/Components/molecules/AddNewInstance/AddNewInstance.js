@@ -47,7 +47,7 @@ const AddNewInstance = ({ closeModalFn }) => {
       >
         <form onSubmit={onSubmit}>
           <label htmlFor="title">Tytuł</label>
-          <input type="text" id="title" />
+          <input type="text" id="title" required />
           <DateLabel>
             {new Date(DataFromCalendar).toLocaleDateString()}
           </DateLabel>
