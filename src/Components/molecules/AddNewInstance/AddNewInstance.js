@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Calendar from "../../atoms/Calendar/Calendar";
 import DateLabel from "../../atoms/DateLabel/DateLabel";
+import CountdownTimer from "../../atoms/CountdownTimer/CountdownTimer";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
@@ -51,6 +52,7 @@ const AddNewInstance = ({ closeModalFn }) => {
           <DateLabel>
             {new Date(DataFromCalendar).toLocaleDateString()}
           </DateLabel>
+          <CountdownTimer countdownTimestampMs={DataFromCalendar} />
           <Calendar funcGetDate={getDateFromCalendar} />
           <button type="submit" value="Wyślij">
             Wyślij
