@@ -19,13 +19,13 @@ function App() {
     .sort((a, b) => (a.data.getTime() > b.data.getTime() ? 1 : -1))
     .map((item, i) => <div key={i}> {item.data}</div>);
 
-  function openModal() {
+  const openModal = () => {
     setIsModalOpen(() => true);
-  }
+  };
 
-  function closeModal() {
+  const closeModal = () => {
     setIsModalOpen(() => false);
-  }
+  };
 
   return (
     <>
