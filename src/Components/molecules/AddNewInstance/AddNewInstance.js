@@ -24,10 +24,11 @@ const CloseModal = styled.div`
 `;
 
 const AddNewInstance = ({ closeModalFn, addNewItem }) => {
-  const [Title, setTitle] = useState();
+  const [Title, setTitle] = useState("");
   const [DataFromCalendar, setDataFromCalendar] = useState(
     new Date().getTime()
   );
+  const tileMaxLength = 20;
 
   const getDateFromCalendar = (DateFromCalendar) => {
     setDataFromCalendar(DateFromCalendar);
@@ -55,10 +56,14 @@ const AddNewInstance = ({ closeModalFn, addNewItem }) => {
           <label htmlFor="title">Tytuł:</label>
           <input
             type="text"
+            maxLength={tileMaxLength}
             id="title"
             onChange={(e) => setTitle(e.target.value)}
             required
           />
+          <p>
+            {Title.length}/{tileMaxLength}
+          </p>
           <DateLabel>
             {new Date(DataFromCalendar).toLocaleDateString()}
           </DateLabel>
