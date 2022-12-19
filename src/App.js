@@ -41,6 +41,12 @@ function App() {
   return (
     <>
       <ButtonIcon icon={plusIcon} onClick={openModal} />
+      {isModalOpen ? (
+        <AddNewInstance
+          closeModalFn={closeModal}
+          addNewItem={updateInitialValues}
+        />
+      ) : null}
       <MainList openModalFn={openModal} dummyValues={stateValues} />
     </>
   );
