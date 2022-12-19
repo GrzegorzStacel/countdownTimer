@@ -14,11 +14,14 @@ function App() {
     { title: "Przegląd Vectra", data: new Date("Jan 13, 2023"), id: 3 },
   ];
 
-  const sortedInitialValues = [].concat(initialValues);
-  sortedInitialValues
-    .sort((a, b) => (a.data.getTime() > b.data.getTime() ? 1 : -1))
-    .map((item, i) => <div key={i}> {item.data}</div>);
+  const sortValues = () => {
+    const sortedInitialValues = [].concat(initialValues);
+    sortedInitialValues
+      .sort((a, b) => (a.data.getTime() > b.data.getTime() ? 1 : -1))
+      .map((item, i) => <div key={i}> {item.data}</div>);
 
+    return sortedInitialValues;
+  };
   const openModal = () => {
     setIsModalOpen(() => true);
   };
