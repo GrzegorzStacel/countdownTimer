@@ -41,8 +41,7 @@ function App() {
   return (
     <>
       <ButtonIcon icon={plusIcon} onClick={openModal} />
-      {isModalOpen ? <AddNewInstance closeModalFn={closeModal} /> : null}
-      <MainList openModalFn={openModal} dummyValues={sortedInitialValues} />
+      <MainList openModalFn={openModal} dummyValues={stateValues} />
     </>
   );
 }
