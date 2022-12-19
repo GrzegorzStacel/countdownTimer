@@ -22,6 +22,9 @@ function App() {
 
     return sortedInitialValues;
   };
+
+  const [stateValues, setStateValues] = useState(sortValues);
+
   const openModal = () => {
     setIsModalOpen(() => true);
   };
