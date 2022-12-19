@@ -33,6 +33,11 @@ function App() {
     setIsModalOpen(() => false);
   };
 
+  const updateInitialValues = (newItem) => {
+    initialValues.push(newItem);
+    setStateValues(sortValues);
+  };
+
   return (
     <>
       <ButtonIcon icon={plusIcon} onClick={openModal} />
