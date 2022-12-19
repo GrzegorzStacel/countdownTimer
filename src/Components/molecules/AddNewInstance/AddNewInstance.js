@@ -23,7 +23,7 @@ const CloseModal = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
-const AddNewInstance = ({ closeModalFn }) => {
+  const [Title, setTitle] = useState();
   const [DataFromCalendar, setDataFromCalendar] = useState(
     new Date().getTime()
   );
