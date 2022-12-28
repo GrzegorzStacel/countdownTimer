@@ -8,6 +8,7 @@
     "@testing-library/user-event": "^13.5.0",
     "dayjs": "^1.11.6",
     "moedim": "^0.5.0",
+    "prettier": "^2.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
