@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
+import { db } from "../../firebase-config";
+import { collection, orderBy, query, onSnapshot } from "firebase/firestore";
+import { ThreeDots as Loader } from "react-loader-spinner";
 import DateNote from "../molecules/DateNote/DateNote";
 import styled from "styled-components";
-import { query, collection, orderBy, onSnapshot } from "firebase/firestore";
-import { db } from "../../firebase-config";
-import Loader from "react-loader-spinner";
 
 const Wrapper = styled.div`
   display: block;
@@ -11,36 +11,48 @@ const Wrapper = styled.div`
   padding-top: 30px;
 `;
 
-const MainList = ({ dummyValues }) => {
-  const [eventFromDB, setEventFromDB] = useState([]);
+const LoaderCenter = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const MainList = () => {
+  const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchData = async () => {
-      const q = query(collection(db, "deadEnds"), orderBy("timeToEnd", "asc"));
-      const unsubscribe = onSnapshot(q, (querySnapShot) => {
-        let deadEndArr = [];
-        querySnapShot.forEach((doc) => {
-          deadEndArr.push({ ...doc.data(), id: doc.id });
-        });
-        setEventFromDB(deadEndArr);
-        setIsLoading(false);
+    const deadEndsRef = query(
+      collection(db, "deadEnds"),
+      orderBy("timeToEnd", "asc")
+    );
+    const unsubscribe = onSnapshot(deadEndsRef, (snapshot) => {
+      let tmpEvents = [];
+      snapshot.forEach((doc) => {
+        tmpEvents.push({ ...doc.data(), id: doc.id });
       });
-      return () => unsubscribe();
-    };
+      setEvents(tmpEvents);
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
   }, []);
 
   return (
     <Wrapper>
-      {console.log("render")}
-      {!isLoading &&
-        eventFromDB.map((e) => (
+      {loading ? (
+        <LoaderCenter>
+          <Loader color="black" height={80} width={80} />
+        </LoaderCenter>
+      ) : (
+        events.map((event) => (
           <DateNote
-            key={e.id}
-            heading={e.title}
-            deadEndDate={new Date(e.timeToEnd.seconds * 1000)}
+            key={event.id}
+            heading={event.title}
+            deadEndDate={new Date(event.timeToEnd.seconds * 1000)}
           />
-        ))}
+        ))
+      )}
     </Wrapper>
   );
 };
