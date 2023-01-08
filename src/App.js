@@ -18,7 +18,6 @@ function App() {
 
   return (
     <>
-      {console.log("App")}
       <ButtonIcon icon={plusIcon} onClick={openModal} />
       {isModalOpen ? <AddNewInstance closeModalFn={closeModal} /> : null}
       <MainList openModalFn={openModal} />
