@@ -23,10 +23,12 @@ const CloseModal = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
-const AddNewInstance = ({ closeModalFn }) => {
+const AddNewInstance = ({ closeModalFn, addNewItem }) => {
+  const [Title, setTitle] = useState("");
   const [DataFromCalendar, setDataFromCalendar] = useState(
     new Date().getTime()
   );
+  const tileMaxLength = 20;
 
   const getDateFromCalendar = (DateFromCalendar) => {
     setDataFromCalendar(DateFromCalendar);
@@ -34,7 +36,11 @@ const AddNewInstance = ({ closeModalFn }) => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    // Do something
+    addNewItem({
+      title: Title,
+      data: new Date(DataFromCalendar),
+      id: DataFromCalendar,
+    });
     closeModalFn();
   };
 
@@ -48,7 +54,16 @@ const AddNewInstance = ({ closeModalFn }) => {
       >
         <form onSubmit={onSubmit}>
           <label htmlFor="title">Tytuł:</label>
-          <input type="text" id="title" required />
+          <input
+            type="text"
+            maxLength={tileMaxLength}
+            id="title"
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+          <p>
+            {Title.length}/{tileMaxLength}
+          </p>
           <DateLabel>
             {new Date(DataFromCalendar).toLocaleDateString()}
           </DateLabel>
