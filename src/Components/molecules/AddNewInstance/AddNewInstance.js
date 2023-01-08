@@ -1,15 +1,18 @@
 import React, { useState } from "react";
+import styled from "styled-components";
+import PropTypes from "prop-types";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "../../../firebase-config";
+
 import DateLabel from "../../atoms/DateLabel/DateLabel";
 import CountdownTimer from "../../atoms/CountdownTimer/CountdownTimer";
 import Calendar from "../../atoms/Calendar/Calendar";
-import styled from "styled-components";
-import PropTypes from "prop-types";
 
 const Container = styled.div`
   z-index: 9;
   width: 100%;
   min-height: 200px;
-  background-color: white;
+  background-color: #606060;
   padding: 25px;
   position: relative;
 `;
@@ -23,9 +26,9 @@ const CloseModal = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
-const AddNewInstance = ({ closeModalFn, addNewItem }) => {
-  const [Title, setTitle] = useState("");
-  const [DataFromCalendar, setDataFromCalendar] = useState(
+const AddNewInstance = ({ closeModalFn }) => {
+  const [title, setTitle] = useState("");
+  const [dataFromCalendar, setDataFromCalendar] = useState(
     new Date().getTime()
   );
   const tileMaxLength = 20;
@@ -34,13 +37,23 @@ const AddNewInstance = ({ closeModalFn, addNewItem }) => {
     setDataFromCalendar(DateFromCalendar);
   };
 
-  const onSubmit = (e) => {
+  const handleFormSubmit = (e) => {
     e.preventDefault();
-    addNewItem({
-      title: Title,
-      data: new Date(DataFromCalendar),
-      id: DataFromCalendar,
+
+    if (title === "") {
+      return;
+    }
+
+    const deadEndsTimerCollRef = collection(db, "deadEnds");
+    addDoc(deadEndsTimerCollRef, {
+      title,
+      timeToEnd: new Date(dataFromCalendar),
+    }).catch((err) => {
+      console.log(err.message);
     });
+
+    setTitle("");
+    setDataFromCalendar(new Date().getTime());
     closeModalFn();
   };
 
@@ -52,22 +65,23 @@ const AddNewInstance = ({ closeModalFn, addNewItem }) => {
           e.stopPropagation();
         }}
       >
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleFormSubmit}>
           <label htmlFor="title">Tytuł:</label>
           <input
             type="text"
             maxLength={tileMaxLength}
             id="title"
+            value={title}
             onChange={(e) => setTitle(e.target.value)}
             required
           />
           <p>
-            {Title.length}/{tileMaxLength}
+            {title.length}/{tileMaxLength}
           </p>
           <DateLabel>
-            {new Date(DataFromCalendar).toLocaleDateString()}
+            {new Date(dataFromCalendar).toLocaleDateString()}
           </DateLabel>
-          <CountdownTimer countdownTimestampMs={DataFromCalendar} />
+          <CountdownTimer countdownTimestampMs={dataFromCalendar} />
           <Calendar funcGetDate={getDateFromCalendar} />
           <button type="submit" value="Wyślij">
             Wyślij
