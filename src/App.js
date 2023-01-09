@@ -3,7 +3,7 @@ import "./App.css";
 import MainList from "./Components/organisms/MainList";
 import ButtonIcon from "./Components/atoms/ButtonIcon/ButtonIcon";
 import AddNewInstance from "./Components/molecules/AddNewInstance/AddNewInstance";
-import plusIcon from "./assets/icons/Plusicon.svg";
+import plusIcon from "./assets/icons/PlusIcon.svg";
 
 function App() {
   const [isModalOpen, setIsModalOpen] = useState(false);
