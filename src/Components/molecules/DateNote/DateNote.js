@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Heading from "../../atoms/Heading/Heading";
 import DateLabel from "../../atoms/DateLabel/DateLabel";
 import PropTypes from "prop-types";
+import ButtonIcon from "../../atoms/ButtonIcon/ButtonIcon";
+import deleteIcon from "../../../assets/icons/DeleteIcon.svg";
 
 const AppContainer = styled.div`
   border-top: 2px solid black;
@@ -23,6 +25,7 @@ const DateNote = ({ heading, deadEndDate }) => {
       <Heading>{heading}</Heading>
       <DateLabel>{new Date(deadEndDate).toLocaleDateString()}</DateLabel>
       <CountdownTimer countdownTimestampMs={deadEndDate} />
+      <ButtonIcon icon={deleteIcon} />
     </AppContainer>
   );
 };
