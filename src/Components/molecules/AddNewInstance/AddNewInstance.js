@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../../firebase-config";
+import { db } from "../../../firebase/firebase-config";
 
 import DateLabel from "../../atoms/DateLabel/DateLabel";
 import CountdownTimer from "../../atoms/CountdownTimer/CountdownTimer";
