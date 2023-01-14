@@ -1,9 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase-config";
-import { collection, orderBy, query, onSnapshot } from "firebase/firestore";
+import {
+  collection,
+  orderBy,
+  query,
+  onSnapshot,
+  doc,
+  deleteDoc,
+} from "firebase/firestore";
 import { ThreeDots as Loader } from "react-loader-spinner";
 import DateNote from "../molecules/DateNote/DateNote";
 import styled from "styled-components";
+import ButtonIcon from "../atoms/ButtonIcon/ButtonIcon";
+import deleteIcon from "../../assets/icons/DeleteIcon.svg";
 
 const Wrapper = styled.div`
   display: block;
@@ -38,6 +47,13 @@ const MainList = () => {
     return () => unsubscribe();
   }, []);
 
+  function deleteDateNote(id, title) {
+    const docRef = doc(db, "deadEnds", id);
+    deleteDoc(docRef)
+      .then(() => console.log(`Document "${title}" is deleted`))
+      .catch((err) => console.log(err.message));
+  }
+
   return (
     <Wrapper>
       {loading ? (
@@ -46,11 +62,17 @@ const MainList = () => {
         </LoaderCenter>
       ) : (
         events.map((event) => (
-          <DateNote
-            key={event.id}
-            heading={event.title}
-            deadEndDate={new Date(event.timeToEnd.seconds * 1000)}
-          />
+          <>
+            <DateNote
+              key={event.id}
+              heading={event.title}
+              deadEndDate={new Date(event.timeToEnd.seconds * 1000)}
+            />
+            <ButtonIcon
+              icon={deleteIcon}
+              onClick={() => deleteDateNote(event.id, event.title)}
+            />
+          </>
         ))
       )}
     </Wrapper>
