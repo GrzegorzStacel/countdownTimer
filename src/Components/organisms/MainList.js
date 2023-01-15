@@ -26,8 +26,8 @@ const MainList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const deadEndsRef = query(dateCollectionRef, orderBy("timeToEnd", "asc"));
-    const unsubscribe = onSnapshot(deadEndsRef, (snapshot) => {
+    const queryRef = query(dateCollectionRef, orderBy("timeToEnd", "asc"));
+    const unsubscribe = onSnapshot(queryRef, (snapshot) => {
       let tmpEvents = [];
       snapshot.forEach((doc) => {
         tmpEvents.push({ ...doc.data(), id: doc.id });
