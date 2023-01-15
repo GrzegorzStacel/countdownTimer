@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase/firebase-config";
-import {
-  collection,
-  orderBy,
-  query,
-  onSnapshot,
-  doc,
-  deleteDoc,
-} from "firebase/firestore";
+import { orderBy, query, onSnapshot, doc, deleteDoc } from "firebase/firestore";
+import { dateCollectionRef } from "../../firebase/firestore.collections";
 import { ThreeDots as Loader } from "react-loader-spinner";
 import DateNote from "../molecules/DateNote/DateNote";
 import styled from "styled-components";
@@ -31,10 +25,7 @@ const MainList = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const deadEndsRef = query(
-      collection(db, "deadEnds"),
-      orderBy("timeToEnd", "asc")
-    );
+    const deadEndsRef = query(dateCollectionRef, orderBy("timeToEnd", "asc"));
     const unsubscribe = onSnapshot(deadEndsRef, (snapshot) => {
       let tmpEvents = [];
       snapshot.forEach((doc) => {

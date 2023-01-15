@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
-import { addDoc, collection } from "firebase/firestore";
-import { db } from "../../../firebase/firebase-config";
+import { addDoc } from "firebase/firestore";
+import { dateCollectionRef } from "../../../firebase/firestore.collections";
 
 import DateLabel from "../../atoms/DateLabel/DateLabel";
 import CountdownTimer from "../../atoms/CountdownTimer/CountdownTimer";
@@ -44,8 +44,7 @@ const AddNewInstance = ({ closeModalFn }) => {
       return;
     }
 
-    const deadEndsTimerCollRef = collection(db, "deadEnds");
-    addDoc(deadEndsTimerCollRef, {
+    addDoc(dateCollectionRef, {
       title,
       timeToEnd: new Date(dataFromCalendar),
     }).catch((err) => {
