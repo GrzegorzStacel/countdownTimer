@@ -7,6 +7,7 @@ import DateNote from "../molecules/DateNote/DateNote";
 import styled from "styled-components";
 import ButtonIcon from "../atoms/ButtonIcon/ButtonIcon";
 import deleteIcon from "../../assets/icons/DeleteIcon.svg";
+import editIcon from "../../assets/icons/EditIcon.svg";
 
 const Wrapper = styled.div`
   display: block;
@@ -63,6 +64,7 @@ const MainList = () => {
               icon={deleteIcon}
               onClick={() => deleteDateNote(event.id, event.title)}
             />
+            <ButtonIcon icon={editIcon} />
           </>
         ))
       )}
