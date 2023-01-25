@@ -26,7 +26,7 @@ const CloseModal = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
-const AddNewInstance = ({ closeModalFn }) => {
+const AddNewInstance = ({ handlerToggleModal }) => {
   const [title, setTitle] = useState("");
   const [dataFromCalendar, setDataFromCalendar] = useState(
     new Date().getTime()
@@ -53,12 +53,12 @@ const AddNewInstance = ({ closeModalFn }) => {
 
     setTitle("");
     setDataFromCalendar(new Date().getTime());
-    closeModalFn();
+    handlerToggleModal();
   };
 
   return (
     <>
-      <CloseModal onClick={closeModalFn} />
+      <CloseModal onClick={handlerToggleModal} />
       <Container
         onClick={(e) => {
           e.stopPropagation();
@@ -85,7 +85,7 @@ const AddNewInstance = ({ closeModalFn }) => {
           <button type="submit" value="Wyślij">
             Wyślij
           </button>
-          <button onClick={closeModalFn}>Anuluj</button>
+          <button onClick={handlerToggleModal}>Anuluj</button>
         </form>
       </Container>
     </>
@@ -93,7 +93,7 @@ const AddNewInstance = ({ closeModalFn }) => {
 };
 
 AddNewInstance.propTypes = {
-  closeModalFn: PropTypes.func.isRequired,
+  handlerToggleModal: PropTypes.func.isRequired,
 };
 
 export default AddNewInstance;

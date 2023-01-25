@@ -6,17 +6,17 @@ import AddNewInstance from "./Components/molecules/AddNewInstance/AddNewInstance
 import plusIcon from "./assets/icons/PlusIcon.svg";
 
 function App() {
-  const [modalOpen, setModalOpen] = useState(false);
+  const [isModalOpen, setModalOpen] = useState(false);
 
   const toggleModal = () => {
-    setModalOpen(!modalOpen);
+    setModalOpen(!isModalOpen);
   };
 
   return (
     <>
       <ButtonIcon icon={plusIcon} onClick={toggleModal} />
-      {modalOpen ? <AddNewInstance closeModalFn={toggleModal} /> : null}
-      <MainList openModalFn={toggleModal} />
+      {isModalOpen ? <AddNewInstance handlerToggleModal={toggleModal} /> : null}
+      <MainList handlerToggleModal={toggleModal} />
     </>
   );
 }
