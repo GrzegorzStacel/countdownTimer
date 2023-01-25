@@ -30,8 +30,6 @@ const Calendar = ({
   const setDataInMs = new Date(deadLineDate).getTime();
 
   useEffect(() => {
-    funcGetDate(setDataInMs);
-  }, [deadLineDate, setDataInMs, funcGetDate]);
     handlerGetDateFromCalendar(setDataInMs);
   }, [deadLineDate, setDataInMs, handlerGetDateFromCalendar]);
 
@@ -47,7 +45,6 @@ const Calendar = ({
 };
 
 Calendar.propTypes = {
-  funcGetDate: PropTypes.func.isRequired,
   handlerGetDateFromCalendar: PropTypes.func.isRequired,
 };
 
