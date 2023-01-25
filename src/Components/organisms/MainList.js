@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { db } from "../../firebase/firebase-config";
 import { orderBy, query, onSnapshot, doc, deleteDoc } from "firebase/firestore";
+import { db } from "../../firebase/firebase-config";
 import { dateCollectionRef } from "../../firebase/firestore.collections";
 import { ThreeDots as Loader } from "react-loader-spinner";
-import DateNote from "../molecules/DateNote/DateNote";
 import styled from "styled-components";
+
+import DateNote from "../molecules/DateNote/DateNote";
 import ButtonIcon from "../atoms/ButtonIcon/ButtonIcon";
 import deleteIcon from "../../assets/icons/DeleteIcon.svg";
 import editIcon from "../../assets/icons/EditIcon.svg";
@@ -69,10 +70,15 @@ const MainList = () => {
               deadEndDate={new Date(event.timeToEnd.seconds * 1000)}
             />
             <ButtonIcon
+              key={event.id + "delete"}
               icon={deleteIcon}
               onClick={() => deleteDateNote(event.id, event.title)}
             />
-            <ButtonIcon icon={editIcon} />
+            <ButtonIcon
+              key={event.id + "edit"}
+              icon={editIcon}
+              onClick={() => setSelectedEvent(event)}
+            />
           </>
         ))
       )}
