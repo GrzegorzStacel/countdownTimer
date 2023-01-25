@@ -48,7 +48,10 @@ const AddNewInstance = ({ handlerToggleModal }) => {
       title,
       timeToEnd: new Date(dataFromCalendar),
     }).catch((err) => {
-      console.log(err.message);
+      console.log(
+        "In AddNewInstance file the addDoc func caught an error: ",
+        err.message
+      );
     });
 
     setTitle("");
@@ -82,7 +85,6 @@ const AddNewInstance = ({ handlerToggleModal }) => {
             {new Date(dataFromCalendar).toLocaleDateString()}
           </DateLabel>
           <CountdownTimer countdownTimestampMs={dataFromCalendar} />
-          <Calendar funcGetDate={getDateFromCalendar} />
           <Calendar handlerGetDateFromCalendar={getDateFromCalendar} />
           <button type="submit" value="Wyślij">
             Wyślij
