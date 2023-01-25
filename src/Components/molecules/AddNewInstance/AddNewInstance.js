@@ -65,6 +65,7 @@ const AddNewInstance = ({ handlerToggleModal }) => {
         }}
       >
         <form onSubmit={handleFormSubmit}>
+          <h1>Dodaj nową notatkę</h1>
           <label htmlFor="title">Tytuł:</label>
           <input
             type="text"
