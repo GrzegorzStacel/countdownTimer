@@ -8,6 +8,7 @@ import styled from "styled-components";
 import ButtonIcon from "../atoms/ButtonIcon/ButtonIcon";
 import deleteIcon from "../../assets/icons/DeleteIcon.svg";
 import editIcon from "../../assets/icons/EditIcon.svg";
+import EditDateNote from "../molecules/EditDateNote/EditDateNote";
 
 const Wrapper = styled.div`
   display: block;
@@ -24,6 +25,7 @@ const LoaderCenter = styled.div`
 const MainList = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [selectedEvent, setSelectedEvent] = useState(false);
 
   useEffect(() => {
     const queryRef = query(dateCollectionRef, orderBy("timeToEnd", "asc"));
@@ -48,6 +50,12 @@ const MainList = () => {
 
   return (
     <Wrapper>
+      {selectedEvent && (
+        <EditDateNote
+          eventData={selectedEvent}
+          onClose={() => setSelectedEvent(false)}
+        />
+      )}
       {loading ? (
         <LoaderCenter>
           <Loader color="black" height={80} width={80} />
