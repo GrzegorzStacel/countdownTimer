@@ -13,6 +13,13 @@ const Calendar = ({
   handlerGetDateFromCalendar,
   fetchedDateStoredInTheDatabase,
 }) => {
+  let initialValues;
+  if (fetchedDateStoredInTheDatabase) {
+    initialValues = fetchedDateStoredInTheDatabase;
+  } else {
+    initialValues = new Date();
+  }
+  const [deadLineDate, setDeadLineDate] = useState(initialValues);
   const setDataInMs = new Date(deadLineDate).getTime();
 
   useEffect(() => {
