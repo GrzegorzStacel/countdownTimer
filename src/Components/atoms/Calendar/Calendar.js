@@ -9,7 +9,10 @@ const StyledCalendar = styled(Timetable)`
 
 const Calendar = ({ funcGetDate }) => {
   const [deadLineDate, setDeadLineDate] = useState(new Date());
+const Calendar = ({
   handlerGetDateFromCalendar,
+  fetchedDateStoredInTheDatabase,
+}) => {
   const setDataInMs = new Date(deadLineDate).getTime();
 
   useEffect(() => {
