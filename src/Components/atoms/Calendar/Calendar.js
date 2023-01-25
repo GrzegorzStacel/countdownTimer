@@ -9,11 +9,14 @@ const StyledCalendar = styled(Timetable)`
 
 const Calendar = ({ funcGetDate }) => {
   const [deadLineDate, setDeadLineDate] = useState(new Date());
+  handlerGetDateFromCalendar,
   const setDataInMs = new Date(deadLineDate).getTime();
 
   useEffect(() => {
     funcGetDate(setDataInMs);
   }, [deadLineDate, setDataInMs, funcGetDate]);
+    handlerGetDateFromCalendar(setDataInMs);
+  }, [deadLineDate, setDataInMs, handlerGetDateFromCalendar]);
 
   return (
     <StyledCalendar
@@ -28,6 +31,7 @@ const Calendar = ({ funcGetDate }) => {
 
 Calendar.propTypes = {
   funcGetDate: PropTypes.func.isRequired,
+  handlerGetDateFromCalendar: PropTypes.func.isRequired,
 };
 
 export default Calendar;

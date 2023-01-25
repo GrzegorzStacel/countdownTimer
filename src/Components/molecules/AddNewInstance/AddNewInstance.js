@@ -82,6 +82,7 @@ const AddNewInstance = ({ handlerToggleModal }) => {
           </DateLabel>
           <CountdownTimer countdownTimestampMs={dataFromCalendar} />
           <Calendar funcGetDate={getDateFromCalendar} />
+          <Calendar handlerGetDateFromCalendar={getDateFromCalendar} />
           <button type="submit" value="Wyślij">
             Wyślij
           </button>
