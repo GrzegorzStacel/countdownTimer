@@ -51,12 +51,6 @@ const MainList = () => {
 
   return (
     <Wrapper>
-      {selectedEvent && (
-        <EditDateNote
-          eventData={selectedEvent}
-          onClose={() => setSelectedEvent(false)}
-        />
-      )}
       {loading ? (
         <LoaderCenter>
           <Loader color="black" height={80} width={80} />
@@ -79,6 +73,12 @@ const MainList = () => {
               icon={editIcon}
               onClick={() => setSelectedEvent(event)}
             />
+            {selectedEvent && selectedEvent.id === event.id && (
+              <EditDateNote
+                eventData={selectedEvent}
+                onClose={() => setSelectedEvent(false)}
+              />
+            )}
           </>
         ))
       )}
