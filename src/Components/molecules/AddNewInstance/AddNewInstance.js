@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 import { addDoc } from "firebase/firestore";
-import { dateCollectionRef } from "../../../firebase/firestore.collections";
 
-import DateLabel from "../../atoms/DateLabel/DateLabel";
-import CountdownTimer from "../../atoms/CountdownTimer/CountdownTimer";
-import Calendar from "../../atoms/Calendar/Calendar";
+import { dateCollectionRef } from "../../../firebase/firestore.collections";
+import Form from "../../atoms/Form/Form";
 
 const Container = styled.div`
   z-index: 9;
@@ -31,13 +29,9 @@ const AddNewInstance = ({ handlerToggleModal }) => {
   const [dataFromCalendar, setDataFromCalendar] = useState(
     new Date().getTime()
   );
-  const tileMaxLength = 20;
+  const titleMaxLength = 20;
 
-  const getDateFromCalendar = (DateFromCalendar) => {
-    setDataFromCalendar(DateFromCalendar);
-  };
-
-  const handleFormSubmit = (e) => {
+  const formSubmit = (e) => {
     e.preventDefault();
 
     if (title === "") {
@@ -59,6 +53,14 @@ const AddNewInstance = ({ handlerToggleModal }) => {
     handlerToggleModal();
   };
 
+  const stateSetTitle = (e) => {
+    setTitle(e);
+  };
+
+  const stateSetDataFromCalendar = (e) => {
+    setDataFromCalendar(e);
+  };
+
   return (
     <>
       <CloseModal onClick={handlerToggleModal} />
@@ -67,30 +69,14 @@ const AddNewInstance = ({ handlerToggleModal }) => {
           e.stopPropagation();
         }}
       >
-        <form onSubmit={handleFormSubmit}>
-          <h1>Dodaj nową notatkę</h1>
-          <label htmlFor="title">Tytuł:</label>
-          <input
-            type="text"
-            maxLength={tileMaxLength}
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-          <p>
-            {title.length}/{tileMaxLength}
-          </p>
-          <DateLabel>
-            {new Date(dataFromCalendar).toLocaleDateString()}
-          </DateLabel>
-          <CountdownTimer countdownTimestampMs={dataFromCalendar} />
-          <Calendar handlerGetDateFromCalendar={getDateFromCalendar} />
-          <button type="submit" value="Wyślij">
-            Wyślij
-          </button>
-          <button onClick={handlerToggleModal}>Anuluj</button>
-        </form>
+        <Form
+          handlerFormSubmit={formSubmit}
+          handlerSetTitle={stateSetTitle}
+          handlerOnClose={handlerToggleModal}
+          handlerSetDataFromCalendar={stateSetDataFromCalendar}
+          maxLength={titleMaxLength}
+          submitNameButton={"Wyślij"}
+        />
       </Container>
     </>
   );

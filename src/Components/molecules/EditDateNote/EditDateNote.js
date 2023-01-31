@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import { doc, updateDoc } from "firebase/firestore";
 import styled from "styled-components";
 
-import DateLabel from "../../atoms/DateLabel/DateLabel";
-import CountdownTimer from "../../atoms/CountdownTimer/CountdownTimer";
-import Calendar from "../../atoms/Calendar/Calendar";
-import { db, convertToTimestamp } from "../../../firebase/firebase-config";
+import { db } from "../../../firebase/firebase-config";
+import Form from "../../atoms/Form/Form";
 
 const Container = styled.div`
   z-index: 9;
@@ -29,9 +27,9 @@ function EditDateNote({ eventData, onClose }) {
   const [title, setTitle] = useState(eventData.title);
   // dataFromCalendar stores the milliseconds of a given date. E.g. 1675033200000
   const [dataFromCalendar, setDataFromCalendar] = useState();
-  const tileMaxLength = 20;
+  const titleMaxLength = 20;
 
-  const handleFormSubmit = (e) => {
+  const formSubmit = (e) => {
     e.preventDefault();
 
     if (title === "" || dataFromCalendar === null) {
@@ -53,8 +51,12 @@ function EditDateNote({ eventData, onClose }) {
     onClose();
   };
 
-  const getDateFromCalendar = (DateFromCalendar) => {
-    setDataFromCalendar(DateFromCalendar);
+  const stateSetTitle = (e) => {
+    setTitle(e);
+  };
+
+  const stateSetDataFromCalendar = (e) => {
+    setDataFromCalendar(e);
   };
 
   return (
@@ -65,35 +67,16 @@ function EditDateNote({ eventData, onClose }) {
           e.stopPropagation();
         }}
       >
-        <form onSubmit={handleFormSubmit}>
-          <h1>Edytuj notatkę</h1>
-          <label htmlFor="title">Tytuł:</label>
-          <input
-            type="text"
-            id="title"
-            defaultValue={eventData.title}
-            onFocus={(e) => e.target.select()}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-          <p>
-            {title.length}/{tileMaxLength}
-          </p>
-          <DateLabel>
-            {new Date(dataFromCalendar).toLocaleDateString()}
-          </DateLabel>
-          <CountdownTimer countdownTimestampMs={dataFromCalendar} />
-          <Calendar
-            handlerGetDateFromCalendar={getDateFromCalendar}
-            fetchedDateStoredInTheDatabase={convertToTimestamp(
-              eventData.timeToEnd
-            )}
-          />
-          <button type="submit" value="Zaktualizuj">
-            Zaktualizuj
-          </button>
-          <button onClick={onClose}>Anuluj</button>
-        </form>
+        <Form
+          handlerFormSubmit={formSubmit}
+          handlerSetTitle={stateSetTitle}
+          handlerOnClose={onClose}
+          handlerTimeToEnd={eventData.timeToEnd}
+          handlerSetDataFromCalendar={stateSetDataFromCalendar}
+          maxLength={titleMaxLength}
+          title={eventData.title}
+          submitNameButton={"Zaktualizuj"}
+        />
       </Container>
     </>
   );
