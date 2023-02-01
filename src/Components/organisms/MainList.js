@@ -10,6 +10,7 @@ import deleteIcon from "../../assets/icons/DeleteIcon.svg";
 import editIcon from "../../assets/icons/EditIcon.svg";
 import EditDateNote from "../molecules/EditDateNote/EditDateNote";
 import { deleteDateNote } from "../../firebase/Utils/Delete";
+import InfoLabel from "../atoms/InfoLabel/InfoLabel";
 
 const Wrapper = styled.div`
   background-color: #3d3b3b;
@@ -42,6 +43,8 @@ const MainList = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState(false);
+  const [showInfoLabel, setShowInfoLabel] = useState(true);
+  const [infoLabelMessage, setInfoLabelMessage] = useState("");
 
   useEffect(() => {
     const queryRef = query(dateCollectionRef, orderBy("timeToEnd", "asc"));
@@ -57,8 +60,18 @@ const MainList = () => {
     return () => unsubscribe();
   }, []);
 
+  const handleDelete = (eventId, eventTitle) => {
+    deleteDateNote(eventId, eventTitle);
+    setInfoLabelMessage(`Usunięto "${eventTitle}"`);
+    setShowInfoLabel(true);
+    setTimeout(() => {
+      setShowInfoLabel(false);
+    }, 5000);
+  };
+
   return (
     <Wrapper>
+      <InfoLabel show={showInfoLabel} message={infoLabelMessage} />
       {loading ? (
         <LoaderCenter>
           <Loader color="black" height={80} width={80} />
@@ -72,7 +85,7 @@ const MainList = () => {
             />
             <IconWrapper
               icon={deleteIcon}
-              onClick={() => deleteDateNote(event.id, event.title)}
+              onClick={() => handleDelete(event.id, event.title)}
             />
             <IconWrapper
               icon={editIcon}
