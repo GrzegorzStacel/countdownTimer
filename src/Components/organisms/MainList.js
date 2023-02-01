@@ -57,19 +57,16 @@ const MainList = () => {
         </LoaderCenter>
       ) : (
         events.map((event) => (
-          <>
+          <div key={event.id}>
             <DateNote
-              key={event.id}
               heading={event.title}
               deadEndDate={new Date(event.timeToEnd.seconds * 1000)}
             />
             <ButtonIcon
-              key={event.id + "delete"}
               icon={deleteIcon}
               onClick={() => deleteDateNote(event.id, event.title)}
             />
             <ButtonIcon
-              key={event.id + "edit"}
               icon={editIcon}
               onClick={() => setSelectedEvent(event)}
             />
@@ -79,7 +76,7 @@ const MainList = () => {
                 onClose={() => setSelectedEvent(false)}
               />
             )}
-          </>
+          </div>
         ))
       )}
     </Wrapper>
