@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { orderBy, query, onSnapshot, doc, deleteDoc } from "firebase/firestore";
-import { db } from "../../firebase/firebase-config";
+import { orderBy, query, onSnapshot } from "firebase/firestore";
 import { dateCollectionRef } from "../../firebase/firestore.collections";
 import { ThreeDots as Loader } from "react-loader-spinner";
 import styled from "styled-components";
@@ -10,6 +9,7 @@ import ButtonIcon from "../atoms/ButtonIcon/ButtonIcon";
 import deleteIcon from "../../assets/icons/DeleteIcon.svg";
 import editIcon from "../../assets/icons/EditIcon.svg";
 import EditDateNote from "../molecules/EditDateNote/EditDateNote";
+import { deleteDateNote } from "../../firebase/Utils/Delete";
 
 const Wrapper = styled.div`
   display: block;
@@ -41,13 +41,6 @@ const MainList = () => {
 
     return () => unsubscribe();
   }, []);
-
-  function deleteDateNote(id, title) {
-    const docRef = doc(db, "deadEnds", id);
-    deleteDoc(docRef)
-      .then(() => console.log(`Document "${title}" is deleted`))
-      .catch((err) => console.log(err.message));
-  }
 
   return (
     <Wrapper>
