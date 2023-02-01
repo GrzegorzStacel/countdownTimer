@@ -12,15 +12,30 @@ import EditDateNote from "../molecules/EditDateNote/EditDateNote";
 import { deleteDateNote } from "../../firebase/Utils/Delete";
 
 const Wrapper = styled.div`
-  display: block;
-  background: green;
-  padding-top: 30px;
+  background-color: #3d3b3b;
+  padding: 50px;
 `;
 
 const LoaderCenter = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 100%;
+`;
+
+const EventWrapper = styled.div`
+  background-color: dimgray;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+`;
+
+const IconWrapper = styled(ButtonIcon)`
+  display: flex;
 `;
 
 const MainList = () => {
@@ -50,16 +65,16 @@ const MainList = () => {
         </LoaderCenter>
       ) : (
         events.map((event) => (
-          <div key={event.id}>
+          <EventWrapper key={event.id}>
             <DateNote
               heading={event.title}
               deadEndDate={new Date(event.timeToEnd.seconds * 1000)}
             />
-            <ButtonIcon
+            <IconWrapper
               icon={deleteIcon}
               onClick={() => deleteDateNote(event.id, event.title)}
             />
-            <ButtonIcon
+            <IconWrapper
               icon={editIcon}
               onClick={() => setSelectedEvent(event)}
             />
@@ -69,7 +84,7 @@ const MainList = () => {
                 onClose={() => setSelectedEvent(false)}
               />
             )}
-          </div>
+          </EventWrapper>
         ))
       )}
     </Wrapper>
