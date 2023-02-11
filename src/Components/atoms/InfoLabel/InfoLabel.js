@@ -12,7 +12,7 @@ const InfoLabelWrapper = styled.div`
   box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
   animation: slide-in-bottom 0.5s ease-in-out forwards,
     slide-out-bottom 1s ease-in-out forwards 5s;
-  display: ${({ show }) => (show ? "none" : "block")};
+  display: ${(show) => (show ? "block" : "none")};
 
   @keyframes slide-in-bottom {
     from {
