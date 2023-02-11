@@ -5,7 +5,7 @@ const InfoLabelWrapper = styled.div`
   position: fixed;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translate(-50%, 0);
   padding: 10px 20px;
   background-color: #fff;
   border-radius: 10px;
@@ -16,10 +16,10 @@ const InfoLabelWrapper = styled.div`
 
   @keyframes slide-in-bottom {
     from {
-      transform: translateY(100%);
+      transform: translate(-50%, 100%);
     }
     to {
-      transform: translateY(0%);
+      transform: translate(-50%, 0);
     }
   }
 
