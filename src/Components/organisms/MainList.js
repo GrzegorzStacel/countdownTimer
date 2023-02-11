@@ -43,7 +43,8 @@ const MainList = () => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState(false);
-  const [showInfoLabel, setShowInfoLabel] = useState(true);
+  const [showInfoLabel, setShowInfoLabel] = useState(false);
+  // The use of setInfoLabelMessage is required because InfoLabel does not have access to the event variable from the map function in the return() function
   const [infoLabelMessage, setInfoLabelMessage] = useState("");
 
   useEffect(() => {
