@@ -4,6 +4,7 @@ import MainList from "./Components/organisms/MainList";
 import ButtonIcon from "./Components/atoms/ButtonIcon/ButtonIcon";
 import AddNewInstance from "./Components/molecules/AddNewInstance/AddNewInstance";
 import plusIcon from "./assets/icons/PlusIcon.svg";
+import InfoLabel from "./Components/atoms/InfoLabel/InfoLabel";
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(false);
