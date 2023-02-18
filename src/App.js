@@ -8,6 +8,8 @@ import InfoLabel from "./Components/atoms/InfoLabel/InfoLabel";
 
 function App() {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isInfoLabelInModalOpen, setInfoLabelInModalOpen] = useState(false);
+  const [InfoLabelMessage, setInfoLabelMessage] = useState("");
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
