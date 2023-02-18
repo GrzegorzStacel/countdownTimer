@@ -27,7 +27,12 @@ function App() {
   return (
     <>
       <ButtonIcon icon={plusIcon} onClick={toggleModal} />
-      {isModalOpen ? <AddNewInstance handlerToggleModal={toggleModal} /> : null}
+      {isModalOpen ? (
+        <AddNewInstance
+          handlerToggleModal={toggleModal}
+          handlerManageShowingInfoLabelModal={manageShowingInfoLabelModal}
+        />
+      ) : null}
       <MainList handlerToggleModal={toggleModal} />
     </>
   );
