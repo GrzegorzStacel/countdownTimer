@@ -33,7 +33,7 @@ const InfoLabelWrapper = styled.div`
   }
 `;
 
-const InfoLabel = ({ show, message = "some message" }) => {
+const InfoLabel = ({ show = false, message = "some message" }) => {
   return show ? (
     <InfoLabelWrapper>
       <p>{message}</p>
