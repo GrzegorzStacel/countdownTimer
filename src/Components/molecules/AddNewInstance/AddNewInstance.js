@@ -24,7 +24,10 @@ const CloseModal = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
-const AddNewInstance = ({ handlerToggleModal }) => {
+const AddNewInstance = ({
+  handlerToggleModal,
+  handlerManageShowingInfoLabelModal,
+}) => {
   const [title, setTitle] = useState("");
   const [dataFromCalendar, setDataFromCalendar] = useState(
     new Date().getTime()
