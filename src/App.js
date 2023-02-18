@@ -15,6 +15,15 @@ function App() {
     setModalOpen(!isModalOpen);
   };
 
+  const manageShowingInfoLabelModal = (message) => {
+    setInfoLabelInModalOpen(true);
+    setInfoLabelMessage(message);
+    setTimeout(() => {
+      setInfoLabelInModalOpen(false);
+      setInfoLabelMessage("");
+    }, 3000);
+  };
+
   return (
     <>
       <ButtonIcon icon={plusIcon} onClick={toggleModal} />
