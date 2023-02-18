@@ -19,7 +19,7 @@ const InfoLabelWrapper = styled.div`
       transform: translate(-50%, 100%);
     }
     to {
-      transform: translate(-50%, 0);
+      transform: translate(-50%, -15px);
     }
   }
 
