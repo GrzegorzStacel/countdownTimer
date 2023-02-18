@@ -53,6 +53,7 @@ const AddNewInstance = ({
 
     setTitle("");
     setDataFromCalendar(new Date().getTime());
+    handlerManageShowingInfoLabelModal(title);
     handlerToggleModal();
   };
 
