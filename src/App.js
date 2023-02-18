@@ -34,6 +34,12 @@ function App() {
         />
       ) : null}
       <MainList handlerToggleModal={toggleModal} />
+      {isInfoLabelInModalOpen ? (
+        <InfoLabel
+          show={isInfoLabelInModalOpen}
+          message={`"${InfoLabelMessage}" dodany pomyślnie.`}
+        />
+      ) : null}
     </>
   );
 }
