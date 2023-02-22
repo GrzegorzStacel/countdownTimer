@@ -20,6 +20,7 @@ const Calendar = ({
     initialValues = fetchedDateStoredInTheDatabase;
   } else {
     initialValues = new Date();
+    initialValues.setHours(0, 0, 0, 0);
   }
 
   // deadLineDate - Time taken from TimeTable from moedim (StyledCalendar).
