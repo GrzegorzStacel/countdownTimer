@@ -20,12 +20,20 @@ const Form = ({
   );
 
   useEffect(() => {
-    handlerSetDataFromCalendar(dataFromCalendar);
-  }, [dataFromCalendar]);
+    const fetchDataFromCalendar = () => {
+      handlerSetDataFromCalendar(dataFromCalendar);
+    };
+
+    fetchDataFromCalendar();
+  }, [dataFromCalendar, handlerSetDataFromCalendar]);
 
   const getDateFromCalendar = (DateFromCalendar) => {
     setDataFromCalendar(DateFromCalendar);
   };
+
+  const fetchedDateStoredInTheDatabase = handlerTimeToEnd
+    ? convertToTimestamp(handlerTimeToEnd)
+    : null;
 
   return (
     <form onSubmit={handlerFormSubmit}>
@@ -50,9 +58,7 @@ const Form = ({
       <CountdownTimer countdownTimestampMs={dataFromCalendar} />
       <Calendar
         handlerGetDateFromCalendar={getDateFromCalendar}
-        fetchedDateStoredInTheDatabase={
-          handlerTimeToEnd ? convertToTimestamp(handlerTimeToEnd) : null
-        }
+        handlerFetchedDateStoredInTheDatabase={fetchedDateStoredInTheDatabase}
       />
 
       <button type="submit" value="Zaktualizuj">
