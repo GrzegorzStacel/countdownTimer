@@ -39,7 +39,7 @@ const IconWrapper = styled(ButtonIcon)`
   display: flex;
 `;
 
-const MainList = () => {
+const MainList = ({ handlerManageInfoLabel }) => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState(false);
