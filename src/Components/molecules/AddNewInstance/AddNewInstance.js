@@ -24,10 +24,7 @@ const CloseModal = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
-const AddNewInstance = ({
-  handlerToggleModal,
-  handlerManageShowingInfoLabelModal,
-}) => {
+const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
   const [title, setTitle] = useState("");
   const [dataFromCalendar, setDataFromCalendar] = useState(
     new Date().getTime()
@@ -51,9 +48,9 @@ const AddNewInstance = ({
       );
     });
 
+    handlerManageInfoLabel(`Dodano "${title}"`);
     setTitle("");
     setDataFromCalendar(new Date().getTime());
-    handlerManageShowingInfoLabelModal(title);
     handlerToggleModal();
   };
 

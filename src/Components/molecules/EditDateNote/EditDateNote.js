@@ -23,7 +23,7 @@ const CloseModal = styled.div`
   background-color: rgba(0, 0, 0, 0.4);
 `;
 
-function EditDateNote({ eventData, onClose }) {
+function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
   const [title, setTitle] = useState(eventData.title);
   // dataFromCalendar stores the milliseconds of a given date. E.g. 1675033200000
   const [dataFromCalendar, setDataFromCalendar] = useState();
