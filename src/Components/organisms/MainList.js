@@ -59,11 +59,7 @@ const MainList = ({ handlerManageInfoLabel }) => {
 
   const handleDelete = (eventId, eventTitle) => {
     deleteDateNote(eventId, eventTitle);
-    setInfoLabelMessage(`Usunięto "${eventTitle}"`);
-    setShowInfoLabel(true);
-    setTimeout(() => {
-      setShowInfoLabel(false);
-    }, 5000);
+    handlerManageInfoLabel(`Usunięto "${eventTitle}"`);
   };
 
   return (
@@ -91,6 +87,7 @@ const MainList = ({ handlerManageInfoLabel }) => {
               <EditDateNote
                 eventData={selectedEvent}
                 onClose={() => setSelectedEvent(false)}
+                handlerManageInfoLabel={handlerManageInfoLabel}
               />
             )}
           </EventWrapper>
