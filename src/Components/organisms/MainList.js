@@ -10,7 +10,6 @@ import deleteIcon from "../../assets/icons/DeleteIcon.svg";
 import editIcon from "../../assets/icons/EditIcon.svg";
 import EditDateNote from "../molecules/EditDateNote/EditDateNote";
 import { deleteDateNote } from "../../firebase/Utils/Delete";
-import InfoLabel from "../atoms/InfoLabel/InfoLabel";
 
 const Wrapper = styled.div`
   background-color: #3d3b3b;
@@ -43,9 +42,6 @@ const MainList = ({ handlerManageInfoLabel }) => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState(false);
-  const [showInfoLabel, setShowInfoLabel] = useState(false);
-  // The use of setInfoLabelMessage is required because InfoLabel does not have access to the event variable from the map function in the return() function
-  const [infoLabelMessage, setInfoLabelMessage] = useState("");
 
   useEffect(() => {
     const queryRef = query(dateCollectionRef, orderBy("timeToEnd", "asc"));
@@ -72,7 +68,6 @@ const MainList = ({ handlerManageInfoLabel }) => {
 
   return (
     <Wrapper>
-      <InfoLabel show={showInfoLabel} message={infoLabelMessage} />
       {loading ? (
         <LoaderCenter>
           <Loader color="black" height={80} width={80} />
