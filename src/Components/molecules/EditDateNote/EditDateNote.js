@@ -49,6 +49,7 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
       )
     );
     onClose();
+    handlerManageInfoLabel(`Edycja została zapisana`);
   };
 
   const stateSetTitle = (e) => {
