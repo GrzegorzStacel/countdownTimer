@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
-const InfoLabelWrapper = styled.div`
+const InfoLabelWrapperStyle = styled.div`
   position: fixed;
   bottom: 0;
   left: 50%;
@@ -33,12 +34,32 @@ const InfoLabelWrapper = styled.div`
   }
 `;
 
-const InfoLabel = ({ show = false, message = "some message" }) => {
-  return show ? (
-    <InfoLabelWrapper>
-      <p>{message}</p>
-    </InfoLabelWrapper>
+const InfoLabel = ({ message, visible, duration }) => {
+  const [isVisible, setIsVisible] = useState(visible);
+
+  useEffect(() => {
+    setIsVisible(visible);
+    if (visible) {
+      setTimeout(() => {
+        setIsVisible(false);
+      }, duration);
+    }
+  }, [visible, duration]);
+
+  return isVisible ? (
+    <InfoLabelWrapperStyle> {message}</InfoLabelWrapperStyle>
   ) : null;
+};
+
+InfoLabel.propTypes = {
+  message: PropTypes.string.isRequired,
+  visible: PropTypes.bool.isRequired,
+  duration: PropTypes.number.isRequired,
+};
+
+InfoLabel.defaultProps = {
+  visible: false,
+  duration: 3000,
 };
 
 export default InfoLabel;
