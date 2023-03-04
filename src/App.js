@@ -9,8 +9,6 @@ import withInfoLabel from "./hoc/withInfoLabel";
 
 function App({ manageShowingInfoLabel }) {
   const [isModalOpen, setModalOpen] = useState(false);
-  const [isInfoLabelInModalOpen, setInfoLabelInModalOpen] = useState(false);
-  const [InfoLabelMessage, setInfoLabelMessage] = useState("");
 
   const toggleModal = () => {
     setModalOpen(!isModalOpen);
