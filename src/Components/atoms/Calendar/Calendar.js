@@ -1,23 +1,20 @@
 import React, { useState, useEffect } from "react";
-import Timetable from "moedim";
-import styled from "styled-components";
 import PropTypes from "prop-types";
-
-const StyledCalendar = styled(Timetable)`
-  --moedim-primary: green;
-`;
+import Flatpickr from "react-flatpickr";
+import "flatpickr/dist/themes/dark.css";
+import { Polish } from "flatpickr/dist/l10n/pl";
 
 const Calendar = ({
   handlerGetDateFromCalendar,
-  fetchedDateStoredInTheDatabase,
+  handlerFetchedDateStoredInTheDatabase,
 }) => {
   // To set the starting date in the calendar we use one from two options:
   // Adding a new entry - setting the current date: new Date() example: Sun Jan 22 2023 10:55:05 GMT+0100 (czas środkowoeuropejski standardowy)
   // Editing an existing entry: editTimeSec example: Mon Jan 30 2023 00:00:00 GMT+0100 (czas środkowoeuropejski standardowy)
 
   let initialValues;
-  if (fetchedDateStoredInTheDatabase) {
-    initialValues = fetchedDateStoredInTheDatabase;
+  if (handlerFetchedDateStoredInTheDatabase) {
+    initialValues = handlerFetchedDateStoredInTheDatabase;
   } else {
     initialValues = new Date();
     initialValues.setHours(0, 0, 0, 0);
@@ -35,12 +32,23 @@ const Calendar = ({
   }, [deadLineDate, setDataInMs, handlerGetDateFromCalendar]);
 
   return (
-    <StyledCalendar
-      value={deadLineDate}
-      onChange={(d) => {
-        setDeadLineDate(d);
+    <Flatpickr
+      options={{
+        allowInput: true,
+        dateFormat: "d-m-Y",
+        inline: true,
+        locale: Polish,
+        disable: [
+          {
+            from: "1970-01-01",
+            to: new Date(),
+          },
+        ],
       }}
-      locale={"pl-PL"}
+      value={deadLineDate}
+      onChange={(date) => {
+        setDeadLineDate(date);
+      }}
     />
   );
 };
