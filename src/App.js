@@ -19,6 +19,7 @@ function App({ manageShowingInfoLabel }) {
   return (
     <>
       <GlobalStyle />
+      <Navbar handlerOnClick={toggleModal} />
       {isModalOpen ? (
         <AddNewInstance
           handlerToggleModal={toggleModal}
