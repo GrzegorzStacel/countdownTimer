@@ -3,7 +3,6 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import logo from "../../assets/icons/logo.png";
 import ButtonIcon from "../atoms/ButtonIcon/ButtonIcon";
-import plusIcon from "../../assets/icons/PlusIcon.svg";
 
 const Wrapper = styled.div`
   max-width: 1200px;
@@ -22,10 +21,10 @@ const Navbar = ({ handlerOnClick }) => {
     <Wrapper>
       <Logo src={logo} alt="Logo" />
       <ButtonIcon
-        icon={plusIcon}
-        positionFixed
+        icon="plus"
+        addButton
+        svgColor="primary"
         onClick={handlerOnClick}
-        aria-label="Dodaj"
       />
     </Wrapper>
   );

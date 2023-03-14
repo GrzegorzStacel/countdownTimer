@@ -6,8 +6,6 @@ import styled from "styled-components";
 
 import DateNote from "../molecules/DateNote/DateNote";
 import ButtonIcon from "../atoms/ButtonIcon/ButtonIcon";
-import deleteIcon from "../../assets/icons/DeleteIcon.svg";
-import editIcon from "../../assets/icons/EditIcon.svg";
 import EditDateNote from "../molecules/EditDateNote/EditDateNote";
 import { deleteDateNote } from "../../firebase/Utils/Delete";
 
@@ -75,14 +73,16 @@ const MainList = ({ handlerManageInfoLabel }) => {
               heading={event.title}
               deadEndDate={new Date(event.timeToEnd.seconds * 1000)}
             />
-            <IconWrapper
-              icon={deleteIcon}
-              onClick={() => handleDelete(event.id, event.title)}
-            />
-            <IconWrapper
-              icon={editIcon}
-              onClick={() => setSelectedEvent(event)}
-            />
+            <IconWrapper>
+              <ButtonIconStyle
+                icon="edit"
+                onClick={() => setSelectedEvent(event)}
+              />
+              <ButtonIconStyle
+                icon="delete"
+                onClick={() => handleDelete(event.id, event.title)}
+              />
+            </IconWrapper>
             {selectedEvent && selectedEvent.id === event.id && (
               <EditDateNote
                 eventData={selectedEvent}
