@@ -76,10 +76,12 @@ const MainList = ({ handlerManageInfoLabel }) => {
             <IconWrapper>
               <ButtonIconStyle
                 icon="edit"
+                editButton
                 onClick={() => setSelectedEvent(event)}
               />
               <ButtonIconStyle
                 icon="delete"
+                deleteButton
                 onClick={() => handleDelete(event.id, event.title)}
               />
             </IconWrapper>

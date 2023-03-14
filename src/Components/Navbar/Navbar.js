@@ -20,12 +20,7 @@ const Navbar = ({ handlerOnClick }) => {
   return (
     <Wrapper>
       <Logo src={logo} alt="Logo" />
-      <ButtonIcon
-        icon="plus"
-        addButton
-        svgColor="primary"
-        onClick={handlerOnClick}
-      />
+      <ButtonIcon addButton onClick={handlerOnClick} />
     </Wrapper>
   );
 };
