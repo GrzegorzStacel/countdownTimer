@@ -5,7 +5,7 @@ import logo from "../../assets/icons/logo.png";
 import ButtonIcon from "../atoms/ButtonIcon/ButtonIcon";
 
 const Wrapper = styled.div`
-  max-width: 1200px;
+  max-width: ${({ theme }) => theme.wrapperWidth};
   margin: 10px auto 50px;
   display: flex;
   justify-content: center;

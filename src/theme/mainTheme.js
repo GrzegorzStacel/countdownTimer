@@ -11,6 +11,7 @@ export const theme = {
     surface: "#4D525B",
     primary: "#41D9AE",
     secondary: "#DCA0FA",
+    darkGreen: "#43bd5e",
   },
   red: "#C03F3F",
   green: "#44C961",
@@ -24,4 +25,5 @@ export const theme = {
     l: "2.4rem",
     xl: "4rem",
   },
+  wrapperWidth: "1200px",
 };
