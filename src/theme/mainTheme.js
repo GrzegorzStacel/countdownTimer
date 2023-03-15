@@ -12,6 +12,7 @@ export const theme = {
     primary: "#41D9AE",
     secondary: "#DCA0FA",
     darkGreen: "#43bd5e",
+    red: "#8B1A1A",
   },
   red: "#C03F3F",
   green: "#44C961",
