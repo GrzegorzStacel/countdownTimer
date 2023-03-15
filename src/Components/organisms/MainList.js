@@ -9,11 +9,6 @@ import ButtonIcon from "../atoms/ButtonIcon/ButtonIcon";
 import EditDateNote from "../molecules/EditDateNote/EditDateNote";
 import { deleteDateNote } from "../../firebase/Utils/Delete";
 
-const Wrapper = styled.div`
-  background-color: #3d3b3b;
-  padding: 50px;
-`;
-
 const LoaderCenter = styled.div`
   display: flex;
   justify-content: center;
@@ -21,19 +16,33 @@ const LoaderCenter = styled.div`
   height: 100%;
 `;
 
+const Wrapper = styled.div`
+  max-width: ${({ theme }) => theme.wrapperWidth};
+  margin: 0 auto;
+`;
+
 const EventWrapper = styled.div`
-  background-color: dimgray;
+  background-color: ${({ theme }) => theme.surface};
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
+  margin: 20px 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
+  width: 100%;
 `;
 
-const IconWrapper = styled(ButtonIcon)`
+const IconWrapper = styled.div`
   display: flex;
+  flex-direction: column;
+`;
+
+const ButtonIconStyle = styled(ButtonIcon)`
+  margin-right: 0;
+
+  &:first-child {
+    margin-right: 20px;
+  }
 `;
 
 const MainList = ({ handlerManageInfoLabel }) => {

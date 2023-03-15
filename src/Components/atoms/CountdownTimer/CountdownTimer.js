@@ -5,9 +5,8 @@ import { getRemainingTimeUntilMsTimestamp } from "../../../Utils/CountdownTimerU
 const Container = styled.div`
   height: 100px;
   padding: 0 15px;
-  font-family: "Oswald";
-  font-size: 30px;
-
+  font-size: 1.4em;
+  color: ${({ theme }) => theme.on.surface};
   display: flex;
   justify-content: center;
   align-items: center;

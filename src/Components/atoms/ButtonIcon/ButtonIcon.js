@@ -5,21 +5,17 @@ import EditIcon from "../../../assets/icons/EditIcon";
 import DeleteIcon from "../../../assets/icons/DeleteIcon";
 
 const Button = styled.button`
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: relative;
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.red};
+  margin: 5px;
   width: 60px;
   height: 50px;
-  border-radius: 0;
+  border-radius: 10px;
   border: none;
   transition: 0.1s;
-
-  svg {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
 
   ${({ addButton }) =>
     addButton &&
@@ -29,6 +25,25 @@ const Button = styled.button`
       top: 0;
       right: 0;
       border-radius: 0 0 0 25px;
+      width: 60px;
+      &:hover {
+        background-color: ${({ theme }) => theme.hover.surface};
+      }
+    `}
+
+  ${({ deleteButton }) =>
+    deleteButton &&
+    css`
+      &:hover {
+        background-color: ${({ theme }) => theme.hover.red};
+      }
+    `}
+
+  ${({ editButton }) =>
+    editButton &&
+    css`
+      background-color: ${({ theme }) => theme.on.secondary};
+
       &:hover {
         background-color: ${({ theme }) => theme.hover.surface};
       }
