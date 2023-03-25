@@ -53,6 +53,7 @@ const InputStyled = styled(Input)`
 `;
 
 const Form = ({
+  heading,
   handlerFormSubmit,
   title = "",
   handlerSetTitle,

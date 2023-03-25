@@ -73,6 +73,7 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
         }}
       >
         <Form
+          heading="Edytuj notatkę"
           handlerFormSubmit={formSubmit}
           handlerSetTitle={stateSetTitle}
           handlerOnClose={onClose}
