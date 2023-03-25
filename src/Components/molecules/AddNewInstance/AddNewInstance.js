@@ -10,7 +10,7 @@ const Container = styled.div`
   z-index: 9;
   background-color: ${({ theme }) => theme.surface};
   padding: 25px;
-  position: absolute;
+  position: fixed;
   right: 0;
   top: 0;
   height: 100vh;
@@ -75,6 +75,7 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
         }}
       >
         <Form
+          heading="Dodaj nową notatkę"
           handlerFormSubmit={formSubmit}
           handlerSetTitle={stateSetTitle}
           handlerOnClose={handlerToggleModal}

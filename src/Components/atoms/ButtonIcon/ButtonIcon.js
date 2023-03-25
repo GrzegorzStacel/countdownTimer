@@ -11,8 +11,8 @@ const Button = styled.button`
   position: relative;
   background-color: ${({ theme }) => theme.red};
   margin: 5px;
-  width: 60px;
-  height: 50px;
+  width: 40px;
+  height: 40px;
   border-radius: 10px;
   border: none;
   transition: 0.1s;

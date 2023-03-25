@@ -7,11 +7,15 @@ import Form from "../../atoms/Form/Form";
 
 const Container = styled.div`
   z-index: 9;
-  width: 100%;
-  min-height: 200px;
-  background-color: #606060;
+  background-color: ${({ theme }) => theme.surface};
   padding: 25px;
-  position: relative;
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100vh;
+  width: 500px;
+  display: flex;
+  justify-content: center;
 `;
 
 const CloseModal = styled.div`

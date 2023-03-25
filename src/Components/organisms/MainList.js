@@ -4,10 +4,12 @@ import { dateCollectionRef } from "../../firebase/firestore.collections";
 import { ThreeDots as Loader } from "react-loader-spinner";
 import styled from "styled-components";
 
-import DateNote from "../molecules/DateNote/DateNote";
 import ButtonIcon from "../atoms/ButtonIcon/ButtonIcon";
 import EditDateNote from "../molecules/EditDateNote/EditDateNote";
 import { deleteDateNote } from "../../firebase/Utils/Delete";
+import Heading from "../atoms/Heading/Heading";
+import DateLabel from "../atoms/DateLabel/DateLabel";
+import CountdownTimer from "../atoms/CountdownTimer/CountdownTimer";
 
 const LoaderCenter = styled.div`
   display: flex;
@@ -19,22 +21,33 @@ const LoaderCenter = styled.div`
 const Wrapper = styled.div`
   max-width: ${({ theme }) => theme.wrapperWidth};
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const EventWrapper = styled.div`
   background-color: ${({ theme }) => theme.surface};
   border-radius: 10px;
-  margin: 20px 50px;
-  display: flex;
+  margin: 10px 50px;
+  display: grid;
+  grid-template-columns:
+    minmax(300px, auto) 110px minmax(100px, 180px)
+    150px;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 10px 30px;
   width: 100%;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+  }
 `;
 
-const IconWrapper = styled.div`
+const ButtonsWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
 `;
 
 const ButtonIconStyle = styled(ButtonIcon)`
@@ -73,16 +86,24 @@ const MainList = ({ handlerManageInfoLabel }) => {
     <Wrapper>
       {loading ? (
         <LoaderCenter>
-          <Loader color="black" height={80} width={80} />
+          <Loader color="white" height={80} width={80} />
         </LoaderCenter>
       ) : (
         events.map((event) => (
           <EventWrapper key={event.id}>
-            <DateNote
-              heading={event.title}
-              deadEndDate={new Date(event.timeToEnd.seconds * 1000)}
+            <Heading>{event.title}</Heading>
+            <DateLabel>
+              {new Date(
+                new Date(event.timeToEnd.seconds * 1000)
+              ).toLocaleDateString()}
+            </DateLabel>
+            <CountdownTimer
+              countdownTimestampMs={new Date(event.timeToEnd.seconds * 1000)}
+              Day
+              Hour
+              Minute
             />
-            <IconWrapper>
+            <ButtonsWrapper>
               <ButtonIconStyle
                 icon="edit"
                 editButton
@@ -93,7 +114,7 @@ const MainList = ({ handlerManageInfoLabel }) => {
                 deleteButton
                 onClick={() => handleDelete(event.id, event.title)}
               />
-            </IconWrapper>
+            </ButtonsWrapper>
             {selectedEvent && selectedEvent.id === event.id && (
               <EditDateNote
                 eventData={selectedEvent}

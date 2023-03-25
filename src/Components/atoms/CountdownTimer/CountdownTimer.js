@@ -1,25 +1,27 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { getRemainingTimeUntilMsTimestamp } from "../../../Utils/CountdownTimerUtils";
+import Paragraph from "../Paragraph/Paragraph";
 
 const Container = styled.div`
-  height: 100px;
   padding: 0 15px;
-  font-size: 1.4em;
+  font-size: ${({ theme }) => theme.fontSize.s};
   color: ${({ theme }) => theme.on.surface};
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: right;
 `;
 
 const Span = styled.span`
-  margin-left: 5px;
   margin-right: 5px;
 `;
 
 const TwoNumbers = styled.div`
-  width: 2ch;
   text-align: right;
+  display: inline;
+`;
+
+const ParagraphLeftPadding = styled(Paragraph)`
+  padding-left: 1px;
+  margin: 0;
 `;
 
 const defaultRemainingTime = {
@@ -29,7 +31,13 @@ const defaultRemainingTime = {
   days: "00",
 };
 
-const CountdownTimer = ({ countdownTimestampMs }) => {
+const CountdownTimer = ({
+  countdownTimestampMs,
+  Day,
+  Hour,
+  Minute,
+  Second,
+}) => {
   const [remainingTime, setRemainingTime] = useState(defaultRemainingTime);
 
   useEffect(() => {
@@ -46,22 +54,30 @@ const CountdownTimer = ({ countdownTimestampMs }) => {
 
   return (
     <Container>
-      <Span>
-        <TwoNumbers>{remainingTime.days}</TwoNumbers>
-      </Span>
-      <Span>dni</Span>
-      <Span>
-        <TwoNumbers>{remainingTime.hours}</TwoNumbers>
-      </Span>
-      <Span>godzin</Span>
-      <Span>
-        <TwoNumbers>{remainingTime.minutes}</TwoNumbers>
-      </Span>
-      <Span>minut</Span>
-      <Span>
-        <TwoNumbers>{remainingTime.seconds}</TwoNumbers>
-      </Span>
-      <Span>sekund</Span>
+      {Day && (
+        <Span>
+          <TwoNumbers>{remainingTime.days}</TwoNumbers>
+          <ParagraphLeftPadding>D</ParagraphLeftPadding>
+        </Span>
+      )}
+      {Hour && (
+        <Span>
+          <TwoNumbers>{remainingTime.hours}</TwoNumbers>
+          <ParagraphLeftPadding>h</ParagraphLeftPadding>
+        </Span>
+      )}
+      {Minute && (
+        <Span>
+          <TwoNumbers>{remainingTime.minutes}</TwoNumbers>
+          <ParagraphLeftPadding>m</ParagraphLeftPadding>
+        </Span>
+      )}
+      {Second && (
+        <Span>
+          <TwoNumbers>{remainingTime.seconds}</TwoNumbers>
+          <ParagraphLeftPadding>s</ParagraphLeftPadding>
+        </Span>
+      )}
     </Container>
   );
 };

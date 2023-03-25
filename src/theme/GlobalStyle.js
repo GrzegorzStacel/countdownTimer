@@ -19,6 +19,12 @@ const GlobalStyle = createGlobalStyle`
         margin: 0;
         padding: 0;
     }
+    
+    // This styles are here because I don't figure out how to add styles to the flatpickr input that was on top of datetime picker...
+    // So I turn off this and I solve my problem in another way
+    input{
+      display: none;
+    }
 `;
 
 export default GlobalStyle;

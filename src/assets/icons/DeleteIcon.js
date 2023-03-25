@@ -5,8 +5,8 @@ const DeleteIcon = ({ theme }) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 48 48"
-      width="33px"
-      height="33px"
+      width="23px"
+      height="23px"
       fill={theme.on.surface}
       stroke={theme.on.surface}
       aria-label="Ikona usnięcia"
