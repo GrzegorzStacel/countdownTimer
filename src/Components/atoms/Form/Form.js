@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import DateLabel from "../DateLabel/DateLabel";
 import CountdownTimer from "../CountdownTimer/CountdownTimer";
 import Calendar from "../Calendar/Calendar";
 import { convertToTimestamp } from "../../../firebase/firebase-config";
