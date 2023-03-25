@@ -27,7 +27,7 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
   const [title, setTitle] = useState(eventData.title);
   // dataFromCalendar stores the milliseconds of a given date. E.g. 1675033200000
   const [dataFromCalendar, setDataFromCalendar] = useState();
-  const titleMaxLength = 20;
+  const titleMaxLength = 30;
 
   const formSubmit = (e) => {
     e.preventDefault();

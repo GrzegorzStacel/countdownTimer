@@ -33,7 +33,7 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
   const [dataFromCalendar, setDataFromCalendar] = useState(
     new Date().getTime()
   );
-  const titleMaxLength = 20;
+  const titleMaxLength = 30;
 
   const formSubmit = (e) => {
     e.preventDefault();
