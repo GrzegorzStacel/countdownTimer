@@ -8,6 +8,7 @@ import Paragraph from "../Paragraph/Paragraph";
 import Button from "../Button/Button";
 import styled from "styled-components";
 import Input from "../Input/Input";
+import Tags from "../../molecules/Tags/Tags";
 
 const StyledForm = styled.form`
   display: flex;
