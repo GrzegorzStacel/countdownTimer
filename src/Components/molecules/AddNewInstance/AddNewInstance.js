@@ -3,7 +3,7 @@ import styled from "styled-components";
 import PropTypes from "prop-types";
 import { addDoc } from "firebase/firestore";
 
-import { dateCollectionRef } from "../../../firebase/firestore.collections";
+import { dateCollectionRefDeadEnds } from "../../../firebase/firestore.collections";
 import Form from "../../atoms/Form/Form";
 
 const Container = styled.div`
@@ -42,7 +42,7 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
       return;
     }
 
-    addDoc(dateCollectionRef, {
+    addDoc(dateCollectionRefDeadEnds, {
       title,
       timeToEnd: new Date(dataFromCalendar),
     }).catch((err) => {
