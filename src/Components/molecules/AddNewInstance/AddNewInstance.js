@@ -33,6 +33,8 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
   const [dataFromCalendar, setDataFromCalendar] = useState(
     new Date().getTime()
   );
+  const [tagTitle, setTagTitle] = useState([]);
+  const [tagColour, setTagColor] = useState([]);
   const titleMaxLength = 30;
 
   const formSubmit = (e) => {
@@ -42,8 +44,14 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
       return;
     }
 
+    const tmpObjStoreTagData = {
+      title: tagTitle,
+      colour: tagColour,
+    };
+
     addDoc(dateCollectionRefDeadEnds, {
       title,
+      tag: tmpObjStoreTagData,
       timeToEnd: new Date(dataFromCalendar),
     }).catch((err) => {
       console.log(
@@ -66,6 +74,11 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
     setDataFromCalendar(e);
   };
 
+  const stateSetTag = (title, color) => {
+    setTagTitle(title);
+    setTagColor(color);
+  };
+
   return (
     <>
       <CloseModal onClick={handlerToggleModal} />
@@ -80,6 +93,7 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
           handlerSetTitle={stateSetTitle}
           handlerOnClose={handlerToggleModal}
           handlerSetDataFromCalendar={stateSetDataFromCalendar}
+          handlerSetTag={stateSetTag}
           maxLength={titleMaxLength}
           submitNameButton={"Wyślij"}
         />

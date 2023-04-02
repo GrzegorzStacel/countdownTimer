@@ -62,6 +62,7 @@ const Form = ({
   handlerOnClose,
   handlerTimeToEnd,
   handlerSetDataFromCalendar,
+  handlerSetTag,
   submitNameButton,
 }) => {
   const [titleForm, setTitleForm] = useState(title);
@@ -106,6 +107,7 @@ const Form = ({
           {titleForm.length}/{maxLength}
         </ParagraphAbsoluteStyled>
       </Wrapper>
+      <Tags handlerSetTag={handlerSetTag} />
       <InputStyled
         center
         readOnly
