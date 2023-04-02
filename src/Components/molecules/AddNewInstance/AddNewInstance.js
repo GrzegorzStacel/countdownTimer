@@ -58,8 +58,8 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
     handlerToggleModal();
   };
 
-  const stateSetTitle = (e) => {
-    setTitle(e);
+  const stateSetTitle = (title) => {
+    setTitle(title);
   };
 
   const stateSetDataFromCalendar = (e) => {
