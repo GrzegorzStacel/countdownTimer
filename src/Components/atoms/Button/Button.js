@@ -12,17 +12,14 @@ const Button = styled.button`
   border: none;
 
   &:hover {
-    background-color: ${({ theme }) => theme.hover.darkGreen};
+    filter: saturate(85%) brightness(85%);
+    color: white;
   }
 
   ${({ cancel }) =>
     cancel &&
     css`
       background-color: ${({ theme }) => theme.red};
-
-      &:hover {
-        background-color: ${({ theme }) => theme.hover.red};
-      }
     `}
 `;
 export default Button;

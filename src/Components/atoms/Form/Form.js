@@ -127,9 +127,7 @@ const Form = ({
         />
       </Wrapper>
       <WrapperButton>
-        <Button type="submit" value="Zaktualizuj">
-          {submitNameButton}
-        </Button>
+        <Button type="submit">{submitNameButton}</Button>
         <Button onClick={handlerOnClose} cancel>
           Anuluj
         </Button>

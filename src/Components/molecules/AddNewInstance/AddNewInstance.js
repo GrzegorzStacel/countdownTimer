@@ -33,9 +33,9 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
   const [dataFromCalendar, setDataFromCalendar] = useState(
     new Date().getTime()
   );
-  const [tagTitle, setTagTitle] = useState([]);
-  const [tagColour, setTagColor] = useState([]);
-  const titleMaxLength = 30;
+  const [tagTitle, setTagTitle] = useState(["Brak"]);
+  const [tagColour, setTagColor] = useState(["yellow"]);
+  const titleMaxLength = 35;
 
   const formSubmit = (e) => {
     e.preventDefault();

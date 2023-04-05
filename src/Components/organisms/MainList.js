@@ -32,9 +32,7 @@ const EventWrapper = styled.div`
   border-radius: 10px;
   margin: 10px 50px;
   display: grid;
-  grid-template-columns:
-    minmax(300px, auto) 110px minmax(100px, 180px)
-    150px;
+  grid-template-columns: minmax(400px, auto) 80px minmax(100px, 180px) 160px 150px;
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
