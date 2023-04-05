@@ -19,11 +19,21 @@ const Wrapper = styled.div`
       border-color: black;
     `}
 `;
-const Tag = ({ color, children, isActive, id, handleSetSelectedTag }) => {
+const Tag = ({
+  color,
+  children,
+  isActive,
+  id,
+  handleSetSelectedTag,
+  disableClick,
+}) => {
   const [localIsActive, setLocalIsActive] = useState();
 
   const handlerOnClick = () => {
-    handleSetSelectedTag(children, color, id);
+    if (!disableClick) {
+      console.log("click");
+      handleSetSelectedTag(children, color, id);
+    }
   };
 
   useEffect(() => {
@@ -31,7 +41,12 @@ const Tag = ({ color, children, isActive, id, handleSetSelectedTag }) => {
   }, [isActive]);
 
   return (
-    <Wrapper color={color} onClick={handlerOnClick} isActive={localIsActive}>
+    <Wrapper
+      color={color}
+      onClick={handlerOnClick}
+      isActive={localIsActive}
+      disableClick={disableClick}
+    >
       {children}
     </Wrapper>
   );
@@ -48,6 +63,7 @@ Tag.propTypes = {
   color: PropTypes.string.isRequired,
   isActive: PropTypes.bool.isRequired,
   id: PropTypes.string,
+  disableClick: PropTypes.bool,
 };
 
 export default Tag;

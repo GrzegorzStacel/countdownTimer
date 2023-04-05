@@ -10,6 +10,7 @@ import { deleteDateNote } from "../../firebase/Utils/Delete";
 import Heading from "../atoms/Heading/Heading";
 import DateLabel from "../atoms/DateLabel/DateLabel";
 import CountdownTimer from "../atoms/CountdownTimer/CountdownTimer";
+import Tag from "../atoms/Tag/Tag";
 
 const LoaderCenter = styled.div`
   display: flex;
@@ -71,7 +72,14 @@ const MainList = ({ handlerManageInfoLabel }) => {
     const unsubscribe = onSnapshot(queryRef, (snapshot) => {
       let tmpEvents = [];
       snapshot.forEach((doc) => {
-        tmpEvents.push({ ...doc.data(), id: doc.id });
+        const tag = doc.tag || {};
+
+        tmpEvents.push({
+          ...doc.data(),
+          id: doc.id,
+          tagColour: tag.colour,
+          tagTitle: tag.title,
+        });
       });
       setEvents(tmpEvents);
       setLoading(false);
@@ -106,6 +114,9 @@ const MainList = ({ handlerManageInfoLabel }) => {
               Hour
               Minute
             />
+            <Tag color={event.tag.colour} disableClick>
+              {event.tag.title}
+            </Tag>
             <ButtonsWrapper>
               <ButtonIconStyle
                 icon="edit"

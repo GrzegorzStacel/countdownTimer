@@ -31,6 +31,8 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
   const [title, setTitle] = useState(eventData.title);
   // dataFromCalendar stores the milliseconds of a given date. E.g. 1675033200000
   const [dataFromCalendar, setDataFromCalendar] = useState();
+  const [tagTitle, setTagTitle] = useState([]);
+  const [tagColour, setTagColor] = useState([]);
   const titleMaxLength = 30;
 
   const formSubmit = (e) => {
@@ -40,9 +42,15 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
       return;
     }
 
+    const tmpObjStoreTagData = {
+      title: tagTitle,
+      colour: tagColour,
+    };
+
     const docRef = doc(db, "deadEnds", eventData.id);
 
     const updateData = {
+      tag: tmpObjStoreTagData,
       title,
       timeToEnd: new Date(dataFromCalendar),
     };
@@ -54,6 +62,11 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
     );
     onClose();
     handlerManageInfoLabel(`Edycja została zapisana`);
+  };
+
+  const stateSetTag = (title, color) => {
+    setTagTitle(title);
+    setTagColor(color);
   };
 
   const stateSetTitle = (e) => {
@@ -79,6 +92,7 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
           handlerOnClose={onClose}
           handlerTimeToEnd={eventData.timeToEnd}
           handlerSetDataFromCalendar={stateSetDataFromCalendar}
+          handlerSetTag={stateSetTag}
           maxLength={titleMaxLength}
           title={eventData.title}
           submitNameButton={"Zaktualizuj"}
