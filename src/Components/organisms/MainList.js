@@ -11,6 +11,7 @@ import Heading from "../atoms/Heading/Heading";
 import DateLabel from "../atoms/DateLabel/DateLabel";
 import CountdownTimer from "../atoms/CountdownTimer/CountdownTimer";
 import Tag from "../atoms/Tag/Tag";
+import ButtonSort from "../atoms/ButtonSort/ButtonSort";
 
 const LoaderCenter = styled.div`
   display: flex;
@@ -61,11 +62,13 @@ const MainList = ({ handlerManageInfoLabel }) => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState(false);
+  const [sortListField, setSortListField] = useState("timeToEnd");
+  const [sortListDirection, setSortListDirection] = useState("asc");
 
   useEffect(() => {
     const queryRef = query(
       dateCollectionRefDeadEnds,
-      orderBy("timeToEnd", "asc")
+      orderBy(sortListField, sortListDirection)
     );
     const unsubscribe = onSnapshot(queryRef, (snapshot) => {
       let tmpEvents = [];
@@ -84,15 +87,20 @@ const MainList = ({ handlerManageInfoLabel }) => {
     });
 
     return () => unsubscribe();
-  }, []);
+  }, [sortListField, sortListDirection]);
 
   const handleDelete = (eventId, eventTitle) => {
     deleteDateNote(eventId, eventTitle);
     handlerManageInfoLabel(`Usunięto "${eventTitle}"`);
   };
 
+  const ButtonSortClick = (field) => {
+    setSortListField(field);
+  };
+
   return (
     <Wrapper>
+      <ButtonSort setSortList={ButtonSortClick}>Sortuj</ButtonSort>
       {loading ? (
         <LoaderCenter>
           <Loader color="white" height={80} width={80} />
