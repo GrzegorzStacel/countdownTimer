@@ -12,6 +12,7 @@ import DateLabel from "../atoms/DateLabel/DateLabel";
 import CountdownTimer from "../atoms/CountdownTimer/CountdownTimer";
 import Tag from "../atoms/Tag/Tag";
 import ButtonSort from "../atoms/ButtonSort/ButtonSort";
+import Sort from "../molecules/Sort/Sort";
 
 const LoaderCenter = styled.div`
   display: flex;
@@ -26,6 +27,11 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const WrapperButtonSort = styled.div`
+  position: relative;
+  align-self: flex-start;
 `;
 
 const EventWrapper = styled.div`
@@ -64,6 +70,7 @@ const MainList = ({ handlerManageInfoLabel }) => {
   const [selectedEvent, setSelectedEvent] = useState(false);
   const [sortListField, setSortListField] = useState("timeToEnd");
   const [sortListDirection, setSortListDirection] = useState("asc");
+  const [isSortModuleAppear, setIsSortModuleAppear] = useState(false);
 
   useEffect(() => {
     const queryRef = query(
@@ -94,13 +101,16 @@ const MainList = ({ handlerManageInfoLabel }) => {
     handlerManageInfoLabel(`Usunięto "${eventTitle}"`);
   };
 
-  const ButtonSortClick = (field) => {
-    setSortListField(field);
+  const ButtonSortClick = () => {
+    setIsSortModuleAppear(!isSortModuleAppear);
   };
 
   return (
     <Wrapper>
-      <ButtonSort setSortList={ButtonSortClick}>Sortuj</ButtonSort>
+      <WrapperButtonSort>
+        <ButtonSort onClick={ButtonSortClick}>Sortuj</ButtonSort>
+        {isSortModuleAppear && <Sort />}
+      </WrapperButtonSort>
       {loading ? (
         <LoaderCenter>
           <Loader color="white" height={80} width={80} />
