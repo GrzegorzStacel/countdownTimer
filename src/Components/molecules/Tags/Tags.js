@@ -14,7 +14,7 @@ const Wrapper = styled.div`
   margin: 20px 0 50px 0;
 `;
 
-const Tags = ({ handlerSetTag }) => {
+const Tags = ({ handlerSetTag, className }) => {
   const [events, setEvents] = useState([]);
   const [selectedTag, setSelectedTag] = useState(null);
 
@@ -41,7 +41,7 @@ const Tags = ({ handlerSetTag }) => {
   );
 
   return (
-    <Wrapper>
+    <Wrapper className={className}>
       {events.map((item) => (
         <Tag
           key={item.id}
