@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import SortIcon from "../../../assets/icons/SortIcon";
 
-const Sort = styled.button`
+const Button = styled.button`
   background-color: ${({ theme }) => theme.surface};
   color: ${({ theme }) => theme.on.surface};
   font-size: ${({ theme }) => theme.fontSize.s};
@@ -16,12 +16,12 @@ const Sort = styled.button`
   align-items: center;
 `;
 
-const ButtonSort = ({ children, setSortList }) => {
+const ButtonSort = ({ children, onClick }) => {
   return (
-    <Sort onClick={() => setSortList("title")}>
+    <Button onClick={onClick}>
       {children}
       <SortIcon />
-    </Sort>
+    </Button>
   );
 };
 
