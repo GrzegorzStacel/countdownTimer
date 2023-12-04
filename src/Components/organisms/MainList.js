@@ -116,44 +116,72 @@ const MainList = ({ handlerManageInfoLabel }) => {
           <Loader color="white" height={80} width={80} />
         </LoaderCenter>
       ) : (
-        events.map((event) => (
-          <EventWrapper key={event.id}>
-            <Heading>{event.title}</Heading>
-            <DateLabel>
-              {new Date(
-                new Date(event.timeToEnd.seconds * 1000)
-              ).toLocaleDateString()}
-            </DateLabel>
-            <CountdownTimer
-              countdownTimestampMs={new Date(event.timeToEnd.seconds * 1000)}
-              Day
-              Hour
-              Minute
-            />
-            <Tag color={event.tag.colour} disableClick>
-              {event.tag.title}
-            </Tag>
-            <ButtonsWrapper>
-              <ButtonIconStyle
-                icon="edit"
-                editButton
-                onClick={() => setSelectedEvent(event)}
-              />
-              <ButtonIconStyle
-                icon="delete"
-                deleteButton
-                onClick={() => handleDelete(event.id, event.title)}
-              />
-            </ButtonsWrapper>
-            {selectedEvent && selectedEvent.id === event.id && (
-              <EditDateNote
-                eventData={selectedEvent}
-                onClose={() => setSelectedEvent(false)}
-                handlerManageInfoLabel={handlerManageInfoLabel}
-              />
-            )}
-          </EventWrapper>
-        ))
+        (() => {
+          const filteredEvents = events.filter((event) =>
+            isTagSortEnable
+              ? event.tagTitle.includes(isDataFilteredBySelectedTag)
+              : true
+          );
+          const hasFilteredEvents = filteredEvents.length > 0;
+          return (
+            <>
+              {!hasFilteredEvents && (
+                <NoResultsMessage>
+                  Brak wyników wyszukiwania z tagiem "
+                  {isDataFilteredBySelectedTag}" 🤷‍♂️
+                </NoResultsMessage>
+              )}
+              {filteredEvents.map((event, index) => (
+                <EventWrapper key={event.id}>
+                  <Heading>{event.title}</Heading>
+                  <DateLabel>
+                    {new Date(
+                      new Date(event.timeToEnd.seconds * 1000)
+                    ).toLocaleDateString()}
+                  </DateLabel>
+                  {
+                    <CountdownTimer
+                      countdownTimestampMs={
+                        new Date(event.timeToEnd.seconds * 1000)
+                      }
+                      Day
+                      Hour
+                      Minute={index === 0}
+                    />
+                  }
+                  <Tag color={event.tagColour} disableClick>
+                    {event.tagTitle}
+                  </Tag>
+                  <ButtonsWrapper>
+                    <ButtonIconStyle
+                      icon="edit"
+                      editButton
+                      onClick={() => {
+                        setSelectedEvent(event);
+                        setIsSortModuleAppear(false);
+                      }}
+                    />
+                    <ButtonIconStyle
+                      icon="delete"
+                      deleteButton
+                      onClick={() => {
+                        handleDelete(event.id, event.title);
+                        setIsSortModuleAppear(false);
+                      }}
+                    />
+                  </ButtonsWrapper>
+                  {selectedEvent && selectedEvent.id === event.id && (
+                    <EditDateNote
+                      eventData={selectedEvent}
+                      onClose={() => setSelectedEvent(false)}
+                      handlerManageInfoLabel={handlerManageInfoLabel}
+                    />
+                  )}
+                </EventWrapper>
+              ))}
+            </>
+          );
+        })()
       )}
     </Wrapper>
   );
