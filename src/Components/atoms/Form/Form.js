@@ -64,6 +64,8 @@ const Form = ({
   handlerSetDataFromCalendar,
   handlerSetTag,
   submitNameButton,
+  fetchedTagTitle,
+  fetchedTagColor,
 }) => {
   const [titleForm, setTitleForm] = useState(title);
   const [dataFromCalendar, setDataFromCalendar] = useState(
@@ -107,7 +109,11 @@ const Form = ({
           {titleForm.length}/{maxLength}
         </ParagraphAbsoluteStyled>
       </Wrapper>
-      <Tags handlerSetTag={handlerSetTag} />
+      <Tags
+        handlerSetTag={handlerSetTag}
+        fetchedTagTitle={fetchedTagTitle}
+        fetchedTagColor={fetchedTagColor}
+      />
       <InputStyled
         center
         readOnly

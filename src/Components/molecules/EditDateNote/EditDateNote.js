@@ -88,6 +88,8 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
           handlerTimeToEnd={eventData.timeToEnd}
           handlerSetDataFromCalendar={stateSetDataFromCalendar}
           handlerSetTag={stateSetTag}
+          fetchedTagTitle={eventData.tagTitle}
+          fetchedTagColor={eventData.tagColour}
           maxLength={titleMaxLength}
           title={eventData.title}
           submitNameButton={"Zaktualizuj"}

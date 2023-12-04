@@ -89,13 +89,9 @@ const MainList = ({ handlerManageInfoLabel }) => {
     const unsubscribe = onSnapshot(queryRef, (snapshot) => {
       let tmpEvents = [];
       snapshot.forEach((doc) => {
-        const tag = doc.tag || {};
-
         tmpEvents.push({
           ...doc.data(),
           id: doc.id,
-          tagColour: tag.colour,
-          tagTitle: tag.title,
         });
       });
       setEvents(tmpEvents);

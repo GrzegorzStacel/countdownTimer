@@ -14,7 +14,13 @@ const Wrapper = styled.div`
   margin: 20px 0 50px 0;
 `;
 
-const Tags = ({ handlerSetTag, className }) => {
+const Tags = ({
+  handlerSetTag = (tmpX, tmpY) => {},
+  className,
+  onClickSortByTag,
+  fetchedTagTitle,
+  fetchedTagColor,
+}) => {
   const [events, setEvents] = useState([]);
   const [selectedTag, setSelectedTag] = useState(null);
 
@@ -33,9 +39,10 @@ const Tags = ({ handlerSetTag, className }) => {
   }, []);
 
   const handleSetSelectedTag = useCallback(
-    (tagTitle, tagColor, tagID) => {
-      setSelectedTag(tagID);
+    (tagTitle, tagColor) => {
+      setSelectedTag(tagColor);
       handlerSetTag(tagTitle, tagColor);
+      // console.log("Tags-handersetselectedtag", tagTitle, tagColor);
     },
     [handlerSetTag]
   );
@@ -47,7 +54,7 @@ const Tags = ({ handlerSetTag, className }) => {
           key={item.id}
           id={item.id}
           color={item.color}
-          isActive={item.id === selectedTag}
+          isActive={item.color === selectedTag}
           handleSetSelectedTag={handleSetSelectedTag}
           onClickSortByTag={onClickSortByTag}
         >
