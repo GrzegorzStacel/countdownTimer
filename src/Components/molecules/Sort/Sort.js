@@ -5,55 +5,83 @@ import Paragraph from "../../atoms/Paragraph/Paragraph";
 import Heading from "../../atoms/Heading/Heading";
 import Button from "../../atoms/Button/Button";
 
+const CloseModal = styled.div`
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  //background-color: rgba(0, 0, 0, 0.4);
+`;
+
 const Wrapper = styled.div`
-  border-radius: 0 20px 0 20px;
-  border: 2px solid ${({ theme }) => theme.green};
+  border-radius: 0 0 20px 20px;
+  //border: 2px solid ${({ theme }) => theme.green};
   border-right: none;
   border-bottom: none;
   background: ${({ theme }) => theme.hover.surface};
-  position: absolute;
-  left: 0;
-  top: 60px;
+  //position: absolute;
+  //left: 0;
+  //top: 60px;
   font-size: ${({ theme }) => theme.fontSize.s};
   color: ${({ theme }) => theme.on.surface};
-  width: 200px;
+  //width: 100%;
+  position: relative;
+  z-index: 999;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  margin: 10px 0;
 `;
 
-const TagsStyled = styled(Tags)`
+const SectionStyled = styled.div`
+  display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-bottom: 30px;
+  justify-content: center;
   align-items: center;
+  padding-bottom: 5px;
+`;
+const TagsStyled = styled(Tags)`
+  display: flex;
+  flex-direction: row;
+  //gap: 10px;
+  margin: 5px 0 0 0;
+  //align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 80%;
 `;
 
 const ParagraphStyled = styled(Paragraph)`
   cursor: pointer;
-  width: 100%;
-  padding: 10px 80px 10px 50px;
-  text-align: left;
-  margin: 0;
-  border-left: 2px solid transparent;
+  width: 85%;
+  padding: 10px 30px;
+  text-align: center;
+  margin: 0 10px;
+  border-right: 2px solid transparent;
+  box-sizing: border-box;
+
   &:hover {
     background: ${({ theme }) => theme.surface};
     border-right: 2px solid ${({ theme }) => theme.on.surface};
-    background: linear-gradient(
-      to right,
-      rgba(57, 62, 70, 1),
-      rgba(57, 62, 70, 0.7),
-      rgba(225, 225, 225, 0.2)
-    );
+    //background: linear-gradient(
+    //  to right,
+    //  rgba(57, 62, 70, 1),
+    //  rgba(57, 62, 70, 0.7),
+    //  rgba(225, 225, 225, 0.2)
+    //);
   }
 `;
 
 const HeadingStyled = styled(Heading)`
-  padding-left: 20px;
-  padding-top: 10px;
   cursor: default;
 `;
 
 const ButtonStyled = styled(Button)`
   display: block;
-  margin: 0 auto 30px;
+  margin: 0 auto 5px;
+  padding: 7px;
+  width: 100px;
 `;
 
 const Sort = () => {

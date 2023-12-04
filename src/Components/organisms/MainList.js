@@ -32,6 +32,7 @@ const Wrapper = styled.div`
 const WrapperButtonSort = styled.div`
   position: relative;
   align-self: flex-start;
+  width: 100%;
 `;
 
 const EventWrapper = styled.div`
@@ -62,6 +63,10 @@ const ButtonIconStyle = styled(ButtonIcon)`
   &:first-child {
     margin-right: 20px;
   }
+`;
+
+const NoResultsMessage = styled.h1`
+  color: ${({ theme }) => theme.on.surface};
 `;
 
 const MainList = ({ handlerManageInfoLabel }) => {

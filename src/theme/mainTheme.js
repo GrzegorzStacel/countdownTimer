@@ -27,4 +27,12 @@ export const theme = {
     xl: "4rem",
   },
   wrapperWidth: "1200px",
+  tags: {
+    green: "#43c501",
+    gray: "#A9A9A9",
+    orange: "#FFA500",
+    yellow: "#F2D43A",
+    navy: "#0F4C81",
+    pink: "#FFC0CB",
+  },
 };

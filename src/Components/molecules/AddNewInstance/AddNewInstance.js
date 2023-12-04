@@ -26,6 +26,7 @@ const CloseModal = styled.div`
   left: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.4);
+  z-index: 9;
 `;
 
 const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
