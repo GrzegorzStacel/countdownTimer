@@ -4,6 +4,7 @@ import Tags from "../Tags/Tags";
 import Paragraph from "../../atoms/Paragraph/Paragraph";
 import Heading from "../../atoms/Heading/Heading";
 import Button from "../../atoms/Button/Button";
+import ButtonIcon from "../../atoms/ButtonIcon/ButtonIcon";
 
 const CloseModal = styled.div`
   position: fixed;
@@ -77,6 +78,11 @@ const HeadingStyled = styled(Heading)`
   cursor: default;
 `;
 
+const ButtonIconStyled = styled(ButtonIcon)`
+  width: 60px;
+  height: 60px;
+`;
+
 const ButtonStyled = styled(Button)`
   display: block;
   margin: 0 auto 5px;
@@ -132,6 +138,9 @@ const Sort = ({
         </SectionStyled>
         <SectionStyled>
           <TagsStyled onClickSortByTag={onClickSortByTag} />
+        </SectionStyled>
+        <SectionStyled>
+          <ButtonIconStyled closeButton onClick={onClose} />
         </SectionStyled>
       </Wrapper>
     </>
