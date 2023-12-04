@@ -31,10 +31,7 @@ function App({ manageShowingInfoLabel }) {
             handlerManageInfoLabel={manageInfoLabel}
           />
         ) : null}
-        <MainList
-          handlerToggleModal={toggleModal}
-          handlerManageInfoLabel={manageInfoLabel}
-        />
+        <MainList handlerManageInfoLabel={manageInfoLabel} />
       </ThemeProvider>
     </>
   );

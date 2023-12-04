@@ -42,16 +42,11 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
       return;
     }
 
-    const tmpObjStoreTagData = {
-      title: tagTitle,
-      colour: tagColour,
-    };
-
     const docRef = doc(db, "deadEnds", eventData.id);
-
     const updateData = {
-      tag: tmpObjStoreTagData,
       title,
+      tagTitle,
+      tagColour,
       timeToEnd: new Date(dataFromCalendar),
     };
     updateDoc(docRef, updateData).catch((err) =>

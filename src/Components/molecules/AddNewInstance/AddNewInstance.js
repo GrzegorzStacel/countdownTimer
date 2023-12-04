@@ -40,19 +40,14 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
 
   const formSubmit = (e) => {
     e.preventDefault();
-
     if (title === "") {
       return;
     }
 
-    const tmpObjStoreTagData = {
-      title: tagTitle,
-      colour: tagColour,
-    };
-
     addDoc(dateCollectionRefDeadEnds, {
       title,
-      tag: tmpObjStoreTagData,
+      tagTitle,
+      tagColour,
       timeToEnd: new Date(dataFromCalendar),
     }).catch((err) => {
       console.log(
@@ -78,6 +73,7 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
   const stateSetTag = (title, color) => {
     setTagTitle(title);
     setTagColor(color);
+    // console.log("Addnewinstance-statesettag", title, color);
   };
 
   return (

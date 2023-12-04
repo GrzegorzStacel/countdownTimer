@@ -73,6 +73,7 @@ const MainList = ({ handlerManageInfoLabel }) => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedEvent, setSelectedEvent] = useState(false);
+
   const [sortListField, setSortListField] = useState("timeToEnd");
   const [sortListDirection, setSortListDirection] = useState("asc");
   const [isSortModuleAppear, setIsSortModuleAppear] = useState(false);
@@ -150,7 +151,7 @@ const MainList = ({ handlerManageInfoLabel }) => {
                         new Date(event.timeToEnd.seconds * 1000)
                       }
                       Day
-                      Hour
+                      Hour={index === 0}
                       Minute={index === 0}
                     />
                   }
