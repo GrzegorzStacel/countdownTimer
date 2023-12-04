@@ -114,7 +114,7 @@ const MainList = ({ handlerManageInfoLabel }) => {
     setSortListField(field);
     setSortListDirection(direction);
     // setIsSortModuleAppear(false);
-    setIsTagSortEnable(false);
+    setIsTagSortEnable(true);
   };
 
   const onClickSortListByTag = (tagTitle, setTrue) => {
