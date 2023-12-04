@@ -77,6 +77,9 @@ const MainList = ({ handlerManageInfoLabel }) => {
   const [sortListField, setSortListField] = useState("timeToEnd");
   const [sortListDirection, setSortListDirection] = useState("asc");
   const [isSortModuleAppear, setIsSortModuleAppear] = useState(false);
+  const [isTagSortEnable, setIsTagSortEnable] = useState(false);
+  const [isDataFilteredBySelectedTag, setIsDataFilteredBySelectedTag] =
+    useState(null);
 
   useEffect(() => {
     const queryRef = query(
@@ -100,22 +103,50 @@ const MainList = ({ handlerManageInfoLabel }) => {
     });
 
     return () => unsubscribe();
-  }, [sortListField, sortListDirection]);
+  }, [sortListField, sortListDirection, isTagSortEnable]);
 
   const handleDelete = (eventId, eventTitle) => {
     deleteDateNote(eventId, eventTitle);
     handlerManageInfoLabel(`Usunięto "${eventTitle}"`);
   };
 
-  const ButtonSortClick = () => {
+  const ButtonSortClickOpenModal = () => {
     setIsSortModuleAppear(!isSortModuleAppear);
+  };
+
+  const onClickSortListAscOrDesc = (field, direction) => {
+    setSortListField(field);
+    setSortListDirection(direction);
+    // setIsSortModuleAppear(false);
+    setIsTagSortEnable(false);
+  };
+
+  const onClickSortListByTag = (tagTitle, setTrue) => {
+    setIsTagSortEnable(setTrue);
+    setIsDataFilteredBySelectedTag(tagTitle);
+    // setIsSortModuleAppear(false);
+  };
+
+  const onClickChangeDirectionSortListByTag = (direction) => {
+    setSortListDirection(direction);
   };
 
   return (
     <Wrapper>
       <WrapperButtonSort>
-        <ButtonSort onClick={ButtonSortClick}>Sortuj</ButtonSort>
-        {isSortModuleAppear && <Sort />}
+        <ButtonSort onClick={ButtonSortClickOpenModal}>Sortuj</ButtonSort>
+        {isSortModuleAppear && (
+          <Sort
+            onClick={onClickSortListAscOrDesc}
+            onClickSortByTag={onClickSortListByTag}
+            onClickChangeDirectionSortListByTag={
+              onClickChangeDirectionSortListByTag
+            }
+            onClose={() => {
+              setIsSortModuleAppear(false);
+            }}
+          />
+        )}
       </WrapperButtonSort>
       {loading ? (
         <LoaderCenter>

@@ -49,6 +49,7 @@ const Tags = ({ handlerSetTag, className }) => {
           color={item.color}
           isActive={item.id === selectedTag}
           handleSetSelectedTag={handleSetSelectedTag}
+          onClickSortByTag={onClickSortByTag}
         >
           {item.title}
         </Tag>

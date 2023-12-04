@@ -9,13 +9,24 @@ const Tag = ({
   id,
   handleSetSelectedTag,
   disableClick,
+  onClickSortByTag,
 }) => {
-  const [localIsActive, setLocalIsActive] = useState();
+  const [localIsActive, setLocalIsActive] = useState(true);
 
   const handlerOnClick = () => {
-    if (!disableClick) {
-      handleSetSelectedTag(children, color, id);
+    if (onClickSortByTag) {
+      // Execute this code if you want to sort the data in the MainList component by a specific tag
+      onClickSortByTag(children, true, "asc");
+      return;
     }
+    if (!disableClick) {
+      // Execute this code when we don't add disableClick prop
+      // isActive = true;
+      // console.log("isactive", isActive);
+      handleSetSelectedTag(children, color);
+    }
+
+    // Do nothing when we add disableClick prop to the alone Tag component
   };
 
   useEffect(() => {

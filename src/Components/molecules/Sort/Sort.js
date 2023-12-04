@@ -84,19 +84,57 @@ const ButtonStyled = styled(Button)`
   width: 100px;
 `;
 
-const Sort = () => {
+const Sort = ({
+  onClick,
+  onClose,
+  onClickSortByTag,
+  onClickChangeDirectionSortListByTag,
+}) => {
   return (
-    <Wrapper>
-      <HeadingStyled>Tytuł</HeadingStyled>
-      <ParagraphStyled>Rosnąco</ParagraphStyled>
-      <ParagraphStyled>Malejąco</ParagraphStyled>
-      <HeadingStyled>Data</HeadingStyled>
-      <ParagraphStyled>Rosnąco</ParagraphStyled>
-      <ParagraphStyled>Malejąco</ParagraphStyled>
-      <HeadingStyled>Tag</HeadingStyled>
-      <TagsStyled />
-      <ButtonStyled>Domyślnie</ButtonStyled>
-    </Wrapper>
+    <>
+      <CloseModal onClick={onClose} />
+      <Wrapper
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        <SectionStyled>
+          <HeadingStyled>Tytuł</HeadingStyled>
+          <ParagraphStyled onClick={() => onClick("title", "asc")}>
+            Rosnąco
+          </ParagraphStyled>
+          <ParagraphStyled onClick={() => onClick("title", "desc")}>
+            Malejąco
+          </ParagraphStyled>
+        </SectionStyled>
+        <SectionStyled>
+          <HeadingStyled>Data</HeadingStyled>
+          <ParagraphStyled onClick={() => onClick("timeToEnd", "asc")}>
+            Rosnąco
+          </ParagraphStyled>
+          <ParagraphStyled onClick={() => onClick("timeToEnd", "desc")}>
+            Malejąco
+          </ParagraphStyled>
+        </SectionStyled>
+
+        <SectionStyled>
+          <HeadingStyled>Tag</HeadingStyled>
+          <ButtonStyled
+            onClick={() => onClickChangeDirectionSortListByTag("asc")}
+          >
+            Asc
+          </ButtonStyled>
+          <ButtonStyled
+            onClick={() => onClickChangeDirectionSortListByTag("desc")}
+          >
+            Desc
+          </ButtonStyled>
+        </SectionStyled>
+        <SectionStyled>
+          <TagsStyled onClickSortByTag={onClickSortByTag} />
+        </SectionStyled>
+      </Wrapper>
+    </>
   );
 };
 
