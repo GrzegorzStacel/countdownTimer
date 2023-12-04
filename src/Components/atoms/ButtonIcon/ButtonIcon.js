@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import PlusIcon from "../../../assets/icons/PlusIcon";
 import EditIcon from "../../../assets/icons/EditIcon";
 import DeleteIcon from "../../../assets/icons/DeleteIcon";
+import CloseIcon from "../../../assets/icons/CloseIcon";
 
 const Button = styled.button`
   display: flex;
@@ -48,9 +49,24 @@ const Button = styled.button`
         background-color: ${({ theme }) => theme.hover.surface};
       }
     `}
+  
+  ${({ closeButton }) =>
+    closeButton &&
+    css`
+      background: transparent;
+      border: none;
+      width: 60px;
+      height: 60px;
+    `}
 `;
 
-const ButtonIcon = ({ onClick, addButton, editButton, deleteButton }) => {
+const ButtonIcon = ({
+  onClick,
+  addButton,
+  editButton,
+  deleteButton,
+  closeButton,
+}) => {
   const theme = useTheme();
 
   return (
@@ -59,10 +75,12 @@ const ButtonIcon = ({ onClick, addButton, editButton, deleteButton }) => {
       addButton={addButton}
       editButton={editButton}
       deleteButton={deleteButton}
+      closeButton={closeButton}
     >
       {addButton && <PlusIcon theme={theme} />}
       {editButton && <EditIcon theme={theme} />}
       {deleteButton && <DeleteIcon theme={theme} />}
+      {closeButton && <CloseIcon theme={theme} />}
     </Button>
   );
 };
