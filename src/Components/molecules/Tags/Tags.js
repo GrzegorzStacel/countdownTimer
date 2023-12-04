@@ -32,7 +32,8 @@ const Tags = ({
         id: doc.id,
       }));
       setEvents(tmpEvents);
-      setSelectedTag(tmpEvents[0]?.id);
+      setSelectedTag(fetchedTagColor);
+      handlerSetTag(fetchedTagTitle, fetchedTagColor);
     });
 
     return () => unsubscribe();
