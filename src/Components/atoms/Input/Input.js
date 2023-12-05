@@ -8,7 +8,7 @@ const Input = styled.input`
   padding: 10px 15px;
   color: ${({ theme }) => theme.on.surface};
   font-weight: ${({ theme }) => theme.bold};
-  width: 300px;
+  width: 100%;
 
   display: inline-block;
   position: relative;

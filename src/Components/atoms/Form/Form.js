@@ -9,6 +9,7 @@ import Button from "../Button/Button";
 import styled from "styled-components";
 import Input from "../Input/Input";
 import Tags from "../../molecules/Tags/Tags";
+import Line from "../Line/Line";
 
 const StyledForm = styled.form`
   display: flex;
@@ -19,7 +20,7 @@ const StyledForm = styled.form`
 `;
 
 const HeadingStyled = styled(Heading)`
-  margin-bottom: 100px;
+  margin-bottom: 30px;
 `;
 
 const Wrapper = styled.div`
@@ -27,7 +28,7 @@ const Wrapper = styled.div`
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   width: 100%;
 `;
 
@@ -51,6 +52,15 @@ const InputStyled = styled(Input)`
   border-radius: 15px 15px 0 0;
   text-align: center;
   width: 309px;
+`;
+
+const LineStyled = styled(Line)`
+  margin-top: 0;
+  width: 100%;
+`;
+
+const InputInfoStyled = styled(Input)`
+  margin: 10px 0;
 `;
 
 const Form = ({
@@ -132,6 +142,8 @@ const Form = ({
           Minute
         />
       </Wrapper>
+      <LineStyled />
+      <InputInfoStyled placeholder="Uwagi"></InputInfoStyled>
       <WrapperButton>
         <Button type="submit">{submitNameButton}</Button>
         <Button onClick={handlerOnClose} cancel>
