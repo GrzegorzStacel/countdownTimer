@@ -33,6 +33,7 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
   const [dataFromCalendar, setDataFromCalendar] = useState();
   const [tagTitle, setTagTitle] = useState([]);
   const [tagColour, setTagColor] = useState([]);
+  const [comments, setComments] = useState([""]);
   const titleMaxLength = 35;
 
   const formSubmit = (e) => {
@@ -47,6 +48,7 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
       title,
       tagTitle,
       tagColour,
+      comments,
       timeToEnd: new Date(dataFromCalendar),
     };
     updateDoc(docRef, updateData).catch((err) =>
@@ -66,6 +68,10 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
 
   const stateSetTitle = (e) => {
     setTitle(e);
+  };
+
+  const stateSetComments = (comment) => {
+    setComments(comment);
   };
 
   const stateSetDataFromCalendar = (e) => {
@@ -88,8 +94,10 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
           handlerTimeToEnd={eventData.timeToEnd}
           handlerSetDataFromCalendar={stateSetDataFromCalendar}
           handlerSetTag={stateSetTag}
+          handlerSetComments={stateSetComments}
           fetchedTagTitle={eventData.tagTitle}
           fetchedTagColor={eventData.tagColour}
+          fetchedComments={eventData.comments}
           maxLength={titleMaxLength}
           title={eventData.title}
           submitNameButton={"Zaktualizuj"}

@@ -77,6 +77,7 @@ const Form = ({
   submitNameButton,
   fetchedTagTitle,
   fetchedTagColor,
+  fetchedComments,
 }) => {
   const [titleForm, setTitleForm] = useState(title);
   const [dataFromCalendar, setDataFromCalendar] = useState(
@@ -147,6 +148,7 @@ const Form = ({
       <InputInfoStyled
         placeholder="Uwagi"
         onChange={(e) => handlerSetComments(e.target.value)}
+        defaultValue={fetchedComments}
       ></InputInfoStyled>
       <WrapperButton>
         <Button type="submit">{submitNameButton}</Button>
