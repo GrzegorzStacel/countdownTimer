@@ -1,8 +1,8 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import logo from "../../assets/icons/logo.png";
-import ButtonIcon from "../atoms/ButtonIcon/ButtonIcon";
+import logo from "../../../assets/icons/logo.png";
+import ButtonIcon from "../../atoms/ButtonIcon/ButtonIcon";
 
 const Wrapper = styled.div`
   max-width: ${({ theme }) => theme.wrapperWidth};

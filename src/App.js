@@ -7,7 +7,7 @@ import AddNewInstance from "./Components/molecules/AddNewInstance/AddNewInstance
 import withInfoLabel from "./hoc/withInfoLabel";
 import GlobalStyle from "./theme/GlobalStyle";
 import { theme } from "./theme/mainTheme";
-import Navbar from "./Components/Navbar/Navbar";
+import Navbar from "./Components/molecules/Navbar/Navbar";
 
 function App({ manageShowingInfoLabel }) {
   const [isModalOpen, setModalOpen] = useState(false);
