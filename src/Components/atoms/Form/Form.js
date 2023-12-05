@@ -73,6 +73,7 @@ const Form = ({
   handlerTimeToEnd,
   handlerSetDataFromCalendar,
   handlerSetTag,
+  handlerSetComments,
   submitNameButton,
   fetchedTagTitle,
   fetchedTagColor,
@@ -143,7 +144,10 @@ const Form = ({
         />
       </Wrapper>
       <LineStyled />
-      <InputInfoStyled placeholder="Uwagi"></InputInfoStyled>
+      <InputInfoStyled
+        placeholder="Uwagi"
+        onChange={(e) => handlerSetComments(e.target.value)}
+      ></InputInfoStyled>
       <WrapperButton>
         <Button type="submit">{submitNameButton}</Button>
         <Button onClick={handlerOnClose} cancel>

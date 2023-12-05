@@ -36,6 +36,7 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
   );
   const [tagTitle, setTagTitle] = useState(["Dom"]);
   const [tagColour, setTagColor] = useState(["#FFA500"]);
+  const [comments, setComments] = useState([""]);
   const titleMaxLength = 35;
 
   const formSubmit = (e) => {
@@ -48,6 +49,7 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
       title,
       tagTitle,
       tagColour,
+      comments,
       timeToEnd: new Date(dataFromCalendar),
     }).catch((err) => {
       console.log(
@@ -58,12 +60,17 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
 
     handlerManageInfoLabel(`Dodano "${title}"`);
     setTitle("");
+    setComments("");
     setDataFromCalendar(new Date().getTime());
     handlerToggleModal();
   };
 
   const stateSetTitle = (title) => {
     setTitle(title);
+  };
+
+  const stateSetComments = (comment) => {
+    setComments(comment);
   };
 
   const stateSetDataFromCalendar = (e) => {
@@ -73,7 +80,6 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
   const stateSetTag = (title, color) => {
     setTagTitle(title);
     setTagColor(color);
-    // console.log("Addnewinstance-statesettag", title, color);
   };
 
   return (
@@ -91,6 +97,7 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
           handlerOnClose={handlerToggleModal}
           handlerSetDataFromCalendar={stateSetDataFromCalendar}
           handlerSetTag={stateSetTag}
+          handlerSetComments={stateSetComments}
           maxLength={titleMaxLength}
           submitNameButton={"Wyślij"}
         />
