@@ -113,18 +113,16 @@ const MainList = ({ handlerManageInfoLabel }) => {
   const onClickSortListAscOrDesc = (field, direction) => {
     setSortListField(field);
     setSortListDirection(direction);
-    // setIsSortModuleAppear(false);
+  };
+
+  const onClickSortListByTag = (tagTitle) => {
     setIsTagSortEnable(true);
-  };
-
-  const onClickSortListByTag = (tagTitle, setTrue) => {
-    setIsTagSortEnable(setTrue);
     setIsDataFilteredBySelectedTag(tagTitle);
-    // setIsSortModuleAppear(false);
   };
 
-  const onClickChangeDirectionSortListByTag = (direction) => {
-    setSortListDirection(direction);
+  const onClickShowEverything = () => {
+    setIsTagSortEnable(false);
+    setSortListDirection("asc");
   };
 
   return (
@@ -135,9 +133,7 @@ const MainList = ({ handlerManageInfoLabel }) => {
           <Sort
             onClick={onClickSortListAscOrDesc}
             onClickSortByTag={onClickSortListByTag}
-            onClickChangeDirectionSortListByTag={
-              onClickChangeDirectionSortListByTag
-            }
+            onClickShowEverything={onClickShowEverything}
             onClose={() => {
               setIsSortModuleAppear(false);
             }}
@@ -160,8 +156,7 @@ const MainList = ({ handlerManageInfoLabel }) => {
             <>
               {!hasFilteredEvents && (
                 <NoResultsMessage>
-                  Brak wyników wyszukiwania z tagiem "
-                  {isDataFilteredBySelectedTag}" 🤷‍♂️
+                  Brak wpisów z tagiem "{isDataFilteredBySelectedTag}" 🤷‍♂️
                 </NoResultsMessage>
               )}
               {filteredEvents.map((event, index) => (

@@ -94,7 +94,7 @@ const Sort = ({
   onClick,
   onClose,
   onClickSortByTag,
-  onClickChangeDirectionSortListByTag,
+  onClickShowEverything,
 }) => {
   return (
     <>
@@ -114,7 +114,7 @@ const Sort = ({
           </ParagraphStyled>
         </SectionStyled>
         <SectionStyled>
-          <HeadingStyled>Data</HeadingStyled>
+          <HeadingStyled>Czas</HeadingStyled>
           <ParagraphStyled onClick={() => onClick("timeToEnd", "asc")}>
             Rosnąco
           </ParagraphStyled>
@@ -122,18 +122,9 @@ const Sort = ({
             Malejąco
           </ParagraphStyled>
         </SectionStyled>
-
         <SectionStyled>
-          <HeadingStyled>Tag</HeadingStyled>
-          <ButtonStyled
-            onClick={() => onClickChangeDirectionSortListByTag("asc")}
-          >
-            Asc
-          </ButtonStyled>
-          <ButtonStyled
-            onClick={() => onClickChangeDirectionSortListByTag("desc")}
-          >
-            Desc
+          <ButtonStyled onClick={() => onClickShowEverything()}>
+            Pokaż wszystko
           </ButtonStyled>
         </SectionStyled>
         <SectionStyled>
