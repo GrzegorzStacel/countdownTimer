@@ -2,6 +2,18 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import Paragraph from "../Paragraph/Paragraph";
 
+const Wrapper = styled.div`
+  position: relative;
+  width: 100%;
+`;
+const ParagraphStyled = styled(Paragraph)`
+  font-size: ${({ theme }) => theme.fontSize.xs};
+  margin-top: 5px;
+  right: 0;
+  bottom: -30px;
+  position: absolute;
+`;
+
 const TextareaStyled = styled.textarea`
   background-color: ${({ theme }) => theme.hover.surface};
   border: none;
@@ -33,12 +45,14 @@ function Textarea({ textAreaMaxLength, onChange, value, hideCharCount }) {
 
   return (
     <>
-      <TextareaStyled value={text} onChange={handleChange} />
-      {hideCharCount ? null : (
-        <Paragraph>
-          {text.length}/{textAreaMaxLength} characters
-        </Paragraph>
-      )}
+      <Wrapper>
+        <TextareaStyled value={text} onChange={handleChange} />
+        {hideCharCount ? null : (
+          <ParagraphStyled>
+            {text.length}/{textAreaMaxLength}
+          </ParagraphStyled>
+        )}
+      </Wrapper>
     </>
   );
 }

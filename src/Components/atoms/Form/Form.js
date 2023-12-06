@@ -22,6 +22,7 @@ const StyledForm = styled.form`
 
 const HeadingStyled = styled(Heading)`
   margin-bottom: 30px;
+  margin-top: 0;
 `;
 
 const Wrapper = styled.div`

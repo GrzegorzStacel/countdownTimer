@@ -11,7 +11,7 @@ const Wrapper = styled.div`
   flex-wrap: wrap;
   gap: 5px;
   justify-content: center;
-  margin: 20px 0 50px 0;
+  margin: 20px 0 20px 0;
 `;
 
 const Tags = ({
