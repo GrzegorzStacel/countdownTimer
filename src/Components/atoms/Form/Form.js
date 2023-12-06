@@ -10,6 +10,7 @@ import styled from "styled-components";
 import Input from "../Input/Input";
 import Tags from "../../molecules/Tags/Tags";
 import Line from "../Line/Line";
+import Textarea from "../Textarea/Textarea";
 
 const StyledForm = styled.form`
   display: flex;
@@ -57,10 +58,6 @@ const InputStyled = styled(Input)`
 const LineStyled = styled(Line)`
   margin-top: 0;
   width: 100%;
-`;
-
-const InputInfoStyled = styled(Input)`
-  margin: 10px 0;
 `;
 
 const Form = ({
@@ -145,11 +142,12 @@ const Form = ({
         />
       </Wrapper>
       <LineStyled />
-      <InputInfoStyled
-        placeholder="Uwagi"
-        onChange={(e) => handlerSetComments(e.target.value)}
-        defaultValue={fetchedComments}
-      ></InputInfoStyled>
+      <ParagraphBold>Uwagi</ParagraphBold>
+      <Textarea
+        onChange={(value) => handlerSetComments(value)}
+        value={fetchedComments}
+        textAreaMaxLength={155}
+      />
       <WrapperButton>
         <Button type="submit">{submitNameButton}</Button>
         <Button onClick={handlerOnClose} cancel>
