@@ -13,8 +13,8 @@ import CountdownTimer from "../atoms/CountdownTimer/CountdownTimer";
 import Tag from "../atoms/Tag/Tag";
 import ButtonSort from "../atoms/ButtonSort/ButtonSort";
 import Sort from "../molecules/Sort/Sort";
-import Input from "../atoms/Input/Input";
 import Line from "../atoms/Line/Line";
+import Textarea from "../atoms/Textarea/Textarea";
 
 const LoaderCenter = styled.div`
   display: flex;
@@ -79,10 +79,6 @@ const InfoWrapper = styled.div`
   padding-top: 10px;
   margin-bottom: 10px;
   grid-column: span 5;
-`;
-
-const InputStyled = styled(Input)`
-  width: 100%;
 `;
 
 const MainList = ({ handlerManageInfoLabel }) => {
@@ -221,14 +217,14 @@ const MainList = ({ handlerManageInfoLabel }) => {
                       handlerManageInfoLabel={handlerManageInfoLabel}
                     />
                   )}
-                  <LineStyled />
-                  <InfoWrapper>
-                    <InputStyled
-                      placeholder="Uwagi"
-                      value={event.comments}
-                      disabled
-                    ></InputStyled>
-                  </InfoWrapper>
+                  {event.comments && event.comments.length > 0 ? (
+                    <>
+                      <LineStyled />
+                      <InfoWrapper>
+                        <Textarea value={event.comments} hideCharCount />
+                      </InfoWrapper>
+                    </>
+                  ) : null}
                 </EventWrapper>
               ))}
             </>
