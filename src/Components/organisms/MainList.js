@@ -226,6 +226,7 @@ const MainList = ({ handlerManageInfoLabel }) => {
                     <InputStyled
                       placeholder="Uwagi"
                       value={event.comments}
+                      disabled
                     ></InputStyled>
                   </InfoWrapper>
                 </EventWrapper>
