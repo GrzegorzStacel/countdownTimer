@@ -145,8 +145,10 @@ const Form = ({
       <LineStyled />
       <ParagraphBold>Uwagi</ParagraphBold>
       <Textarea
-        onChange={(value) => handlerSetComments(value)}
-        value={fetchedComments}
+        fetchedComments={fetchedComments}
+        onChange={(value) => {
+          handlerSetComments(value);
+        }}
         textAreaMaxLength={155}
       />
       <WrapperButton>

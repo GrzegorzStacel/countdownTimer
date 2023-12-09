@@ -31,9 +31,13 @@ const TextareaStyled = styled.textarea`
   }
 `;
 
-function Textarea({ textAreaMaxLength, onChange, value, hideCharCount }) {
-  const [text, setText] = useState(value || "");
-
+function Textarea({
+  textAreaMaxLength,
+  onChange,
+  fetchedComments,
+  hideCharCount,
+}) {
+  const [text, setText] = useState(fetchedComments || "");
   const handleChange = (event) => {
     const inputValue = event.target.value;
     console.log(event.target.value, value, text);
