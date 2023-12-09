@@ -40,7 +40,7 @@ function Textarea({
   const [text, setText] = useState(fetchedComments || "");
   const handleChange = (event) => {
     const inputValue = event.target.value;
-    console.log(event.target.value, value, text);
+
     if (inputValue.length <= textAreaMaxLength) {
       setText(inputValue);
       onChange(inputValue);
