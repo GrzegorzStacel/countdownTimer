@@ -14,7 +14,7 @@ import Tag from "../atoms/Tag/Tag";
 import ButtonSort from "../atoms/ButtonSort/ButtonSort";
 import Sort from "../molecules/Sort/Sort";
 import Line from "../atoms/Line/Line";
-import Textarea from "../atoms/Textarea/Textarea";
+import Paragraph from "../atoms/Paragraph/Paragraph";
 
 const LoaderCenter = styled.div`
   display: flex;
@@ -76,9 +76,10 @@ const LineStyled = styled(Line)`
 `;
 
 const InfoWrapper = styled.div`
-  padding-top: 10px;
-  margin-bottom: 10px;
   grid-column: span 5;
+  background-color: ${({ theme }) => theme.hover.surface};
+  border-radius: 5px;
+  padding: 0 10px;
 `;
 
 const MainList = ({ handlerManageInfoLabel }) => {
@@ -221,7 +222,7 @@ const MainList = ({ handlerManageInfoLabel }) => {
                     <>
                       <LineStyled />
                       <InfoWrapper>
-                        <Textarea value={event.comments} hideCharCount />
+                        <Paragraph>{event.comments}</Paragraph>
                       </InfoWrapper>
                     </>
                   ) : null}
