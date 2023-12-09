@@ -36,7 +36,7 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
   );
   const [tagTitle, setTagTitle] = useState(["Dom"]);
   const [tagColour, setTagColor] = useState(["#FFA500"]);
-  const [comments, setComments] = useState([""]);
+  const [comments, setComments] = useState("");
   const titleMaxLength = 35;
 
   const formSubmit = (e) => {
