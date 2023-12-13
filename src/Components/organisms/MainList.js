@@ -15,6 +15,7 @@ import ButtonSort from "../atoms/ButtonSort/ButtonSort";
 import Sort from "../molecules/Sort/Sort";
 import Line from "../atoms/Line/Line";
 import Paragraph from "../atoms/Paragraph/Paragraph";
+import { determineBackgroundColor } from "../../Utils/dateUtils";
 
 const LoaderCenter = styled.div`
   display: flex;
@@ -38,7 +39,8 @@ const WrapperButtonSort = styled.div`
 `;
 
 const EventWrapper = styled.div`
-  background-color: ${({ theme }) => theme.surface};
+  background-color: ${({ backgroundColor, theme }) =>
+    theme.attentionColors[backgroundColor]};
   border-radius: 10px;
   margin: 10px 50px;
   display: grid;
@@ -172,62 +174,70 @@ const MainList = ({ handlerManageInfoLabel }) => {
                   Brak wpisów z tagiem "{isDataFilteredBySelectedTag}" 🤷‍♂️
                 </NoResultsMessage>
               )}
-              {filteredEvents.map((event, index) => (
-                <EventWrapper key={event.id}>
-                  <Heading>{event.title}</Heading>
-                  <DateLabel>
-                    {new Date(
-                      new Date(event.timeToEnd.seconds * 1000)
-                    ).toLocaleDateString()}
-                  </DateLabel>
-                  {
-                    <CountdownTimer
-                      countdownTimestampMs={
+              {filteredEvents.map((event, index) => {
+                const eventTime = new Date(event.timeToEnd.seconds * 1000);
+                const backgroundColor = determineBackgroundColor(eventTime);
+
+                return (
+                  <EventWrapper
+                    key={event.id}
+                    backgroundColor={backgroundColor}
+                  >
+                    <Heading>{event.title}</Heading>
+                    <DateLabel>
+                      {new Date(
                         new Date(event.timeToEnd.seconds * 1000)
-                      }
-                      Day
-                      Hour={index === 0}
-                      Minute={index === 0}
-                    />
-                  }
-                  <Tag color={event.tagColour} disableClick>
-                    {event.tagTitle}
-                  </Tag>
-                  <ButtonsWrapper>
-                    <ButtonIconStyle
-                      icon="edit"
-                      editButton
-                      onClick={() => {
-                        setSelectedEvent(event);
-                        setIsSortModuleAppear(false);
-                      }}
-                    />
-                    <ButtonIconStyle
-                      icon="delete"
-                      deleteButton
-                      onClick={() => {
-                        handleDelete(event.id, event.title);
-                        setIsSortModuleAppear(false);
-                      }}
-                    />
-                  </ButtonsWrapper>
-                  {selectedEvent && selectedEvent.id === event.id && (
-                    <EditDateNote
-                      eventData={selectedEvent}
-                      onClose={() => setSelectedEvent(false)}
-                      handlerManageInfoLabel={handlerManageInfoLabel}
-                    />
-                  )}
-                  {event.comments && event.comments.length > 0 ? (
-                    <>
-                      <LineStyled />
-                      <InfoWrapper>
-                        <Paragraph>{event.comments}</Paragraph>
-                      </InfoWrapper>
-                    </>
-                  ) : null}
-                </EventWrapper>
-              ))}
+                      ).toLocaleDateString()}
+                    </DateLabel>
+                    {
+                      <CountdownTimer
+                        countdownTimestampMs={
+                          new Date(event.timeToEnd.seconds * 1000)
+                        }
+                        Day
+                        Hour={index === 0}
+                        Minute={index === 0}
+                      />
+                    }
+                    <Tag color={event.tagColour} disableClick>
+                      {event.tagTitle}
+                    </Tag>
+                    <ButtonsWrapper>
+                      <ButtonIconStyle
+                        icon="edit"
+                        editButton
+                        onClick={() => {
+                          setSelectedEvent(event);
+                          setIsSortModuleAppear(false);
+                        }}
+                      />
+                      <ButtonIconStyle
+                        icon="delete"
+                        deleteButton
+                        onClick={() => {
+                          handleDelete(event.id, event.title);
+                          setIsSortModuleAppear(false);
+                        }}
+                      />
+                    </ButtonsWrapper>
+                    {selectedEvent && selectedEvent.id === event.id && (
+                      <EditDateNote
+                        eventData={selectedEvent}
+                        onClose={() => setSelectedEvent(false)}
+                        handlerManageInfoLabel={handlerManageInfoLabel}
+                      />
+                    )}
+                    {event.comments && event.comments.length > 0 ? (
+                      <>
+                        <LineStyled />
+                        <InfoWrapper>
+                          <Paragraph>{event.comments}</Paragraph>
+                        </InfoWrapper>
+                      </>
+                    ) : null}
+                  </EventWrapper>
+                );
+              })}
             </>
           );
         })()
