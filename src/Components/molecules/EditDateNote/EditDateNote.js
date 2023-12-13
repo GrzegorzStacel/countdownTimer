@@ -33,7 +33,7 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
   const [dataFromCalendar, setDataFromCalendar] = useState();
   const [tagTitle, setTagTitle] = useState([]);
   const [tagColour, setTagColor] = useState([]);
-  const [comments, setComments] = useState([""]);
+  const [comments, setComments] = useState(eventData.comments);
   const titleMaxLength = 35;
 
   const formSubmit = (e) => {
