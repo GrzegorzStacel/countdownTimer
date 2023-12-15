@@ -4,6 +4,7 @@ import styled from "styled-components";
 
 import { db } from "../../../firebase/firebase-config";
 import Form from "../../atoms/Form/Form";
+import CloseModal from "../../atoms/CloseModal/CloseModal";
 
 const Container = styled.div`
   z-index: 9;
@@ -71,7 +72,7 @@ function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
 
   return (
     <>
-      <CloseModal onClick={onClose} />
+      <CloseModal onClick={onClose} setBackground />
       <Container
         onClick={(e) => {
           e.stopPropagation();

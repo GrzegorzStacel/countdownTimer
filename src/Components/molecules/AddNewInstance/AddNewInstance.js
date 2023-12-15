@@ -5,6 +5,7 @@ import { addDoc } from "firebase/firestore";
 
 import { dateCollectionRefDeadEnds } from "../../../firebase/firestore.collections";
 import Form from "../../atoms/Form/Form";
+import CloseModal from "../../atoms/CloseModal/CloseModal";
 
 const Container = styled.div`
   z-index: 9;
@@ -74,7 +75,7 @@ const AddNewInstance = ({ handlerToggleModal, handlerManageInfoLabel }) => {
 
   return (
     <>
-      <CloseModal onClick={handlerToggleModal} />
+      <CloseModal onClick={handlerToggleModal} setBackground />
       <Container
         onClick={(e) => {
           e.stopPropagation();

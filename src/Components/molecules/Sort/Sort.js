@@ -5,15 +5,7 @@ import Paragraph from "../../atoms/Paragraph/Paragraph";
 import Heading from "../../atoms/Heading/Heading";
 import Button from "../../atoms/Button/Button";
 import ButtonIcon from "../../atoms/ButtonIcon/ButtonIcon";
-
-const CloseModal = styled.div`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  //background-color: rgba(0, 0, 0, 0.4);
-`;
+import CloseModal from "../../atoms/CloseModal/CloseModal";
 
 const Wrapper = styled.div`
   border-radius: 0 0 20px 20px;
