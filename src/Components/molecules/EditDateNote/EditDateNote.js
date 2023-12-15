@@ -18,15 +18,6 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-const CloseModal = styled.div`
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.4);
-`;
-
 function EditDateNote({ eventData, onClose, handlerManageInfoLabel }) {
   const [title, setTitle] = useState(eventData.title);
   // dataFromCalendar stores the milliseconds of a given date. E.g. 1675033200000

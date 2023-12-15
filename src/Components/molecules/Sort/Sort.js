@@ -17,16 +17,11 @@ const CloseModal = styled.div`
 
 const Wrapper = styled.div`
   border-radius: 0 0 20px 20px;
-  //border: 2px solid ${({ theme }) => theme.green};
   border-right: none;
   border-bottom: none;
   background: ${({ theme }) => theme.hover.surface};
-  //position: absolute;
-  //left: 0;
-  //top: 60px;
   font-size: ${({ theme }) => theme.fontSize.s};
   color: ${({ theme }) => theme.on.surface};
-  //width: 100%;
   position: relative;
   z-index: 999;
   display: flex;
@@ -45,9 +40,7 @@ const SectionStyled = styled.div`
 const TagsStyled = styled(Tags)`
   display: flex;
   flex-direction: row;
-  //gap: 10px;
   margin: 5px 0 0 0;
-  //align-items: center;
   justify-content: center;
   flex-wrap: wrap;
   width: 80%;

@@ -43,7 +43,6 @@ const Tags = ({
     (tagTitle, tagColor) => {
       setSelectedTag(tagColor);
       handlerSetTag(tagTitle, tagColor);
-      // console.log("Tags-handersetselectedtag", tagTitle, tagColor);
     },
     [handlerSetTag]
   );
