@@ -84,6 +84,17 @@ const InfoWrapper = styled.div`
   padding: 0 10px;
 `;
 
+const HeadingStyled = styled(Heading)`
+  color: inherit;
+`;
+
+const DateLabelStyled = styled(DateLabel)`
+  color: inherit;
+`;
+const ParagraphStyled = styled(Paragraph)`
+  color: inherit;
+`;
+
 const MainList = ({ handlerManageInfoLabel }) => {
   const [events, setEvents] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -183,12 +194,12 @@ const MainList = ({ handlerManageInfoLabel }) => {
                     key={event.id}
                     backgroundColor={backgroundColor}
                   >
-                    <Heading>{event.title}</Heading>
-                    <DateLabel>
+                    <HeadingStyled>{event.title}</HeadingStyled>
+                    <DateLabelStyled>
                       {new Date(
                         new Date(event.timeToEnd.seconds * 1000)
                       ).toLocaleDateString()}
-                    </DateLabel>
+                    </DateLabelStyled>
                     {
                       <CountdownTimer
                         countdownTimestampMs={
@@ -231,7 +242,7 @@ const MainList = ({ handlerManageInfoLabel }) => {
                       <>
                         <LineStyled />
                         <InfoWrapper>
-                          <Paragraph>{event.comments}</Paragraph>
+                          <ParagraphStyled>{event.comments}</ParagraphStyled>
                         </InfoWrapper>
                       </>
                     ) : null}

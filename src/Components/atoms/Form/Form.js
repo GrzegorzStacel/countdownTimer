@@ -18,6 +18,7 @@ const StyledForm = styled.form`
   justify-content: flex-start;
   align-items: center;
   width: 80%;
+  color: ${({ theme }) => theme.on.surface};
 `;
 
 const HeadingStyled = styled(Heading)`
