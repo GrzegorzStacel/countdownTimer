@@ -15,6 +15,15 @@ export const theme = {
     red: "#8B1A1A",
   },
   red: "#C03F3F",
+  attentionBackgroundColors: {
+    red: "#8B1A1A",
+    yellow: "#F6F00B",
+    default: "#393e46",
+  },
+  attentionTextColors: {
+    red: "#ff7b7b",
+    yellow: "#F6F00B",
+  },
   green: "#44C961",
   light: 300,
   bold: 600,

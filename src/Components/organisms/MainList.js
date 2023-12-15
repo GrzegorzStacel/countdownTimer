@@ -15,6 +15,7 @@ import ButtonSort from "../atoms/ButtonSort/ButtonSort";
 import Sort from "../molecules/Sort/Sort";
 import Line from "../atoms/Line/Line";
 import Paragraph from "../atoms/Paragraph/Paragraph";
+import { determineBackgroundColor } from "../../Utils/dateUtils";
 
 const LoaderCenter = styled.div`
   display: flex;
@@ -47,6 +48,13 @@ const EventWrapper = styled.div`
   align-items: center;
   padding: 10px 30px;
   width: 100%;
+  color: ${({ theme }) => theme.on.surface};
+  ${({ payingAttentionColors, theme }) =>
+    payingAttentionColors &&
+    `
+    box-shadow: inset 0px 15px 30px -10px ${theme.attentionBackgroundColors[payingAttentionColors]};
+    color: ${theme.attentionTextColors[payingAttentionColors]};
+  `};
 
   @media (max-width: 768px) {
     display: flex;
@@ -79,7 +87,18 @@ const InfoWrapper = styled.div`
   grid-column: span 5;
   background-color: ${({ theme }) => theme.hover.surface};
   border-radius: 5px;
-  padding: 0 10px;
+  padding: 0 15px;
+`;
+
+const HeadingStyled = styled(Heading)`
+  color: inherit;
+`;
+
+const DateLabelStyled = styled(DateLabel)`
+  color: inherit;
+`;
+const ParagraphStyled = styled(Paragraph)`
+  color: inherit;
 `;
 
 const MainList = ({ handlerManageInfoLabel }) => {
@@ -172,62 +191,71 @@ const MainList = ({ handlerManageInfoLabel }) => {
                   Brak wpisów z tagiem "{isDataFilteredBySelectedTag}" 🤷‍♂️
                 </NoResultsMessage>
               )}
-              {filteredEvents.map((event, index) => (
-                <EventWrapper key={event.id}>
-                  <Heading>{event.title}</Heading>
-                  <DateLabel>
-                    {new Date(
-                      new Date(event.timeToEnd.seconds * 1000)
-                    ).toLocaleDateString()}
-                  </DateLabel>
-                  {
-                    <CountdownTimer
-                      countdownTimestampMs={
+              {filteredEvents.map((event, index) => {
+                const eventTime = new Date(event.timeToEnd.seconds * 1000);
+                const payingAttentionColors =
+                  determineBackgroundColor(eventTime);
+
+                return (
+                  <EventWrapper
+                    key={event.id}
+                    payingAttentionColors={payingAttentionColors}
+                  >
+                    <HeadingStyled>{event.title}</HeadingStyled>
+                    <DateLabelStyled>
+                      {new Date(
                         new Date(event.timeToEnd.seconds * 1000)
-                      }
-                      Day
-                      Hour={index === 0}
-                      Minute={index === 0}
-                    />
-                  }
-                  <Tag color={event.tagColour} disableClick>
-                    {event.tagTitle}
-                  </Tag>
-                  <ButtonsWrapper>
-                    <ButtonIconStyle
-                      icon="edit"
-                      editButton
-                      onClick={() => {
-                        setSelectedEvent(event);
-                        setIsSortModuleAppear(false);
-                      }}
-                    />
-                    <ButtonIconStyle
-                      icon="delete"
-                      deleteButton
-                      onClick={() => {
-                        handleDelete(event.id, event.title);
-                        setIsSortModuleAppear(false);
-                      }}
-                    />
-                  </ButtonsWrapper>
-                  {selectedEvent && selectedEvent.id === event.id && (
-                    <EditDateNote
-                      eventData={selectedEvent}
-                      onClose={() => setSelectedEvent(false)}
-                      handlerManageInfoLabel={handlerManageInfoLabel}
-                    />
-                  )}
-                  {event.comments && event.comments.length > 0 ? (
-                    <>
-                      <LineStyled />
-                      <InfoWrapper>
-                        <Paragraph>{event.comments}</Paragraph>
-                      </InfoWrapper>
-                    </>
-                  ) : null}
-                </EventWrapper>
-              ))}
+                      ).toLocaleDateString()}
+                    </DateLabelStyled>
+                    {
+                      <CountdownTimer
+                        countdownTimestampMs={
+                          new Date(event.timeToEnd.seconds * 1000)
+                        }
+                        Day
+                        Hour={index === 0}
+                        Minute={index === 0}
+                      />
+                    }
+                    <Tag color={event.tagColour} disableClick>
+                      {event.tagTitle}
+                    </Tag>
+                    <ButtonsWrapper>
+                      <ButtonIconStyle
+                        icon="edit"
+                        editButton
+                        onClick={() => {
+                          setSelectedEvent(event);
+                          setIsSortModuleAppear(false);
+                        }}
+                      />
+                      <ButtonIconStyle
+                        icon="delete"
+                        deleteButton
+                        onClick={() => {
+                          handleDelete(event.id, event.title);
+                          setIsSortModuleAppear(false);
+                        }}
+                      />
+                    </ButtonsWrapper>
+                    {selectedEvent && selectedEvent.id === event.id && (
+                      <EditDateNote
+                        eventData={selectedEvent}
+                        onClose={() => setSelectedEvent(false)}
+                        handlerManageInfoLabel={handlerManageInfoLabel}
+                      />
+                    )}
+                    {event.comments && event.comments.length > 0 ? (
+                      <>
+                        <LineStyled />
+                        <InfoWrapper>
+                          <ParagraphStyled>{event.comments}</ParagraphStyled>
+                        </InfoWrapper>
+                      </>
+                    ) : null}
+                  </EventWrapper>
+                );
+              })}
             </>
           );
         })()

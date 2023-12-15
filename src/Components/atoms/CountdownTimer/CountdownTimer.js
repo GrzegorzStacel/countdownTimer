@@ -6,7 +6,6 @@ import Paragraph from "../Paragraph/Paragraph";
 const Container = styled.div`
   padding: 0 15px;
   font-size: ${({ theme }) => theme.fontSize.s};
-  color: ${({ theme }) => theme.on.surface};
   text-align: right;
 `;
 
@@ -22,6 +21,7 @@ const TwoNumbers = styled.div`
 const ParagraphLeftPadding = styled(Paragraph)`
   padding-left: 1px;
   margin: 0;
+  color: inherit;
 `;
 
 const defaultRemainingTime = {
