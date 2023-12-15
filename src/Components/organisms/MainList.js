@@ -187,12 +187,13 @@ const MainList = ({ handlerManageInfoLabel }) => {
               )}
               {filteredEvents.map((event, index) => {
                 const eventTime = new Date(event.timeToEnd.seconds * 1000);
-                const backgroundColor = determineBackgroundColor(eventTime);
+                const payingAttentionColors =
+                  determineBackgroundColor(eventTime);
 
                 return (
                   <EventWrapper
                     key={event.id}
-                    backgroundColor={backgroundColor}
+                    payingAttentionColors={payingAttentionColors}
                   >
                     <HeadingStyled>{event.title}</HeadingStyled>
                     <DateLabelStyled>
