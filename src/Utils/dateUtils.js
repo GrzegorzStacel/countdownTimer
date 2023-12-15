@@ -1,10 +1,10 @@
 export function determineBackgroundColor(targetDate) {
   if (isDateDifferenceLessThanTwoDays(targetDate)) {
-    return "redSoft";
+    return "red";
   } else if (isDateDifferenceBetweenTwoAndSevenDays(targetDate)) {
-    return "yellowSoft";
+    return "yellow";
   } else {
-    return "surface";
+    return null;
   }
 }
 
