@@ -48,6 +48,13 @@ const EventWrapper = styled.div`
   align-items: center;
   padding: 10px 30px;
   width: 100%;
+  color: ${({ theme }) => theme.on.surface};
+  ${({ payingAttentionColors, theme }) =>
+    payingAttentionColors &&
+    `
+    box-shadow: inset 0px 15px 30px -10px ${theme.attentionBackgroundColors[payingAttentionColors]};
+    color: ${theme.attentionTextColors[payingAttentionColors]};
+  `};
 
   @media (max-width: 768px) {
     display: flex;
