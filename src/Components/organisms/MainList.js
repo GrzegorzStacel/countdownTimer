@@ -39,8 +39,7 @@ const WrapperButtonSort = styled.div`
 `;
 
 const EventWrapper = styled.div`
-  background-color: ${({ backgroundColor, theme }) =>
-    theme.attentionColors[backgroundColor]};
+  background-color: ${({ theme }) => theme.surface};
   border-radius: 10px;
   margin: 10px 50px;
   display: grid;
@@ -81,7 +80,7 @@ const InfoWrapper = styled.div`
   grid-column: span 5;
   background-color: ${({ theme }) => theme.hover.surface};
   border-radius: 5px;
-  padding: 0 10px;
+  padding: 0 15px;
 `;
 
 const HeadingStyled = styled(Heading)`
