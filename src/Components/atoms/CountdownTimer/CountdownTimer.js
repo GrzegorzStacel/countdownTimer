@@ -43,7 +43,7 @@ const CountdownTimer = ({
   useEffect(() => {
     const intervalId = setInterval(() => {
       updateRemainingTime(countdownTimestampMs);
-    }, 1000);
+    }, 120000); // Refresh every 2 minutes
 
     return () => clearInterval(intervalId);
   }, [countdownTimestampMs]);
